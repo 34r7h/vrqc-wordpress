@@ -1,0 +1,52 @@
+/*
+Theme Name: VRQC
+Theme URI: http://vacationrentalsquebeccity.com
+Description: Wordpress theme based on Stylish Bootstrap Theme
+Version: 1.0
+Tags: custom
+
+License: Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+License URI: http://creativecommons.org/licenses/by-sa/3.0/
+
+Some other comments or urls here that will prove useful reminders to you or another developer
+*/
+
+@import url("css/style.css");
+@import url("css/bootstrap.css");
+@import url("css/responsive.css");
+@import url("css/docs.css");
+@import url("css/ie.css");
+
+.text-info {
+  color: RGBA(201, 159, 78, 1);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 10px 0;
+  font-family: "Helvetica Neue", sans-serif;
+  font-weight: normal;
+  line-height: 1;
+  color: RGBA(184, 170, 142, 1);
+  text-rendering: optimizelegibility;
+}
+a {
+  text-decoration: none!important;
+
+}
+.clr a {
+  color: RGBA(6, 15, 62, 1);
+}
+a:hover {
+  color: RGBA(6, 15, 62, 1);
+  text-shadow: 0px 0px 2px RGBA(6, 15, 62, .1);
+  text-decoration: none!important;
+
+}
+
+.brand img {
+  max-width:94px;
+}
+
+.camera_wrap img {
+  width:100%;
+}
