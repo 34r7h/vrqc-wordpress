@@ -5,12 +5,12 @@ function vrqc_enqueue_footer() {
 
 	wp_enqueue_style( 'style', get_template_directory_uri(). '/style.css');
 
-	wp_enqueue_script( 'vrqc-jquery', get_template_directory_uri(). '/js/jquery.js' );
+	wp_enqueue_script( 'vrqc-jquery', 'https://code.jquery.com/jquery-1.11.2.min.js' );
 	wp_enqueue_script( 'jquery-easing', get_template_directory_uri(). '/js/jquery.easing.1.3.js', array( 'vrqc-jquery' ) );
 	wp_enqueue_script( 'camera', get_template_directory_uri(). '/js/camera.js', array( 'vrqc-jquery' ) );
 	wp_enqueue_script( 'jquery-mobile', get_template_directory_uri(). '/js/jquery.mobile.customized.min.js', array( 'vrqc-jquery' ) );
 	wp_enqueue_script( 'html5', 'http://html5shim.googlecode.com/svn/trunk/html5.js' );
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri(). '/js/bootstrap.js', array( 'vrqc-jquery' ) );
+	wp_enqueue_script( 'bootstrap', '//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js', array( 'vrqc-jquery' ) );
 	wp_enqueue_script( 'superfish', get_template_directory_uri(). '/js/superfish.js', array( 'vrqc-jquery' ) );
 	wp_enqueue_script( 'jquery-ui-to-top', get_template_directory_uri(). '/js/jquery.ui.totop.js', array( 'vrqc-jquery' ) );
 }

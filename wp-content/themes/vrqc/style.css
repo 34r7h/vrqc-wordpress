@@ -12,10 +12,10 @@ Some other comments or urls here that will prove useful reminders to you or anot
 */
 
 @import url("css/style.css");
-@import url("css/bootstrap.css");
+@import url("//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css");
 @import url("css/responsive.css");
 @import url("css/docs.css");
-@import url("css/ie.css");
+/* @import url("css/ie.css"); */
 
 .text-info {
   color: RGBA(201, 159, 78, 1);
