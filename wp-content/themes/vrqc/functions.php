@@ -25,3 +25,14 @@ function my_wp_nav_menu_args( $args = '' ) {
 	return $args;
 }
 add_filter( 'wp_nav_menu_args', 'my_wp_nav_menu_args' );
+
+add_theme_support( 'custom-header' );
+
+function featuredSupport() {
+add_theme_support( 'post-thumbnails' );
+add_theme_support( 'automatic-feed-links' );
+add_theme_support( 'title-tag' );
+add_theme_support( 'custom-background' );
+
+}
+add_action( 'after_setup_theme', 'featuredSupport' );

@@ -13,13 +13,23 @@
 <body>
 
 <!--==============================header=================================-->
-<header>
+<header class="container">
     <div class="panel panel-default">
-        <div class="panel-body col-xs-12 col-md-4 col-lg-2">Logo</div>
+        <div class="panel-body col-xs-12 col-md-4 col-lg-2">
+            <?php get_header_image(); ?>
+            <img width="100%" src="<?php echo( get_header_image() ); ?>" alt="<?php echo( get_bloginfo( 'title' ) ); ?>" />
+        </div>
         <div class="panel-body col-xs-12 col-md-2 col-lg-3">Info</div>
         <div class="panel-body col-xs-12 col-md-6 col-lg-7">
             <div class="col-xs-10 col-md-12">
-                Offer
+                <?php
+	            $args = array( 'numberposts' => '1', 'category' => 'offers' );
+                $recent_posts = wp_get_recent_posts( $args );
+                foreach( $recent_posts as $recent ){
+                echo '<li><a href="' . get_permalink($recent["ID"]) . '">' .   ( __($recent["post_title"])).'</a> </li> ';
+                echo get_the_post_thumbnail( $recent["ID"] );
+                }
+                ?>
             </div>
             <div class="col-xs-2 col-md-12">
                 <nav class="navbar navbar-default">
@@ -36,14 +46,11 @@
                                     <span class="icon-bar"></span>
                                 </button>
                                 <a class="navbar-brand" href="#">Brand</a>
+                                <?php wp_nav_menu( array( 'items_wrap' => '%3$s', 'depth' => 1 ) ); ?>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Action</a></li>
-                                        <li><a href="#">Another action</a></li>
-                                        <li><a href="#">Something else here</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Separated link</a></li>
+                                        <?php wp_nav_menu( array( 'items_wrap' => '%3$s') ); ?>
                                     </ul>
                                 </li>
                             </ul>
