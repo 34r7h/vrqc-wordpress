@@ -35,3 +35,38 @@ add_theme_support( 'custom-background' );
 
 }
 add_action( 'after_setup_theme', 'featuredSupport' );
+
+// Register Sidebars
+function main_sidebar() {
+
+$args = array(
+'id'            => 'sidebar-aside',
+'name'          => __( 'Primary Widget Area', 'text_domain' ),
+'description'   => __( 'Aside Widgets.', 'text_domain' ),
+'before_title'  => '<h3>',
+    'after_title'   => '</h3><div class="col-xs-12">',
+'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+    'after_widget'  => '</div></aside>',
+);
+register_sidebar( $args );
+
+}
+
+function footer_sidebar() {
+
+$args = array(
+'id'            => 'sidebar-footer',
+'name'          => __( 'Footer Widget Area', 'text_domain' ),
+'description'   => __( 'Footer Widgets.', 'text_domain' ),
+'before_title'  => '<h3>',
+    'after_title'   => '</h3><div class="col-xs-12">',
+'before_widget' => '<aside id="%1$s" class="col-xs-4 widget %2$s">',
+    'after_widget'  => '</div></aside>',
+);
+register_sidebar( $args );
+
+}
+
+// Hook into the 'widgets_init' action
+add_action( 'widgets_init', 'main_sidebar' );
+add_action( 'widgets_init', 'footer_sidebar' );

@@ -18,7 +18,7 @@
         ?>
     </article>
     <aside class="col-xs-12 col-sm-4">
-        Sidebar
+        <?php get_sidebar(); ?>
     </aside>
 </div>
 <?php get_footer(); ?>
