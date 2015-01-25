@@ -42,16 +42,21 @@ a:hover {
 }
 
 .brand img {
-  max-width:100%;
+    max-width: 61%;
+    padding: 1.618%;
+    min-width:62px;
 }
 
 .camera_wrap img {
   width:100%;
 }
+.homepage-splash {
+    margin-top: 1.618%;
+}
 
-.featured-offer img, .homepage-splash img {
+.featured-offer img, .homepage-splash img, .page img {
     width:100%;
-    height: auto;
+    height: inherit;
 }
 
 .navbar-default {
@@ -60,3 +65,5 @@ a:hover {
 }
 
 body {padding: 0.618%}
+
+.header-info h1 {padding:0; margin:0; font-size: 1.618em}
