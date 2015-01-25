@@ -11,10 +11,7 @@ License URI: http://creativecommons.org/licenses/by-sa/3.0/
 Some other comments or urls here that will prove useful reminders to you or another developer
 */
 
-@import url("css/style.css");
 @import url("//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css");
-@import url("css/responsive.css");
-@import url("css/docs.css");
 /* @import url("css/ie.css"); */
 
 .text-info {
@@ -28,6 +25,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
   color: RGBA(184, 170, 142, 1);
   text-rendering: optimizelegibility;
+    letter-spacing: 0px;
 }
 a {
   text-decoration: none!important;
@@ -44,9 +42,21 @@ a:hover {
 }
 
 .brand img {
-  max-width:94px;
+  max-width:100%;
 }
 
 .camera_wrap img {
   width:100%;
 }
+
+.featured-offer img, .homepage-splash img {
+    width:100%;
+    height: auto;
+}
+
+.navbar-default {
+    background-color: rgba(0,0,0,0);
+    border-color:  rgba(0,0,0,0);
+}
+
+body {padding: 0.618%}
