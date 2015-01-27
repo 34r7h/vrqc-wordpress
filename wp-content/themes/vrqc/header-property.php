@@ -11,7 +11,6 @@
 
 </head>
 <body ng-controller="vrqcCtrl">
-{{test}}
 
 <!--==============================header=================================-->
 <header class="clearfix container">
@@ -78,6 +77,7 @@
                 if( $latest_cat_post->have_posts() ) : while( $latest_cat_post->have_posts() ) : $latest_cat_post->the_post();  ?>
                     <?php echo get_the_post_thumbnail() ?>
             <?php endwhile; endif; ?>
+            <?php wp_reset_query(); ?>
         </div>
         <div class="col-sm-12 hidden-xs">
             <nav class="navbar navbar-default">

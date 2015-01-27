@@ -6,6 +6,12 @@
     <?php endif; ?>
 </footer>
 
+<ul>
+    <li ng-repeat="(key, value) in postData[0]">
+        {{key+': '+value}}
+    </li>
+</ul>
+
 <?php wp_footer();?>
 
 </body>
