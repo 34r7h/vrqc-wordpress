@@ -1,5 +1,7 @@
 # Custom Wordpress App for VRQC
 ===============================
+Features
+--------
 * Uses a modern JSON RESTful API
 * Communicates with the Wordpress back-end via HTTP.get() requests
 
@@ -14,3 +16,8 @@ Basic Request
  });`
 
 // TODO
+--
+* enable custom fields on post editing
+* set calendar / form to smart
+* Weather
+* Put in real info!! yay
