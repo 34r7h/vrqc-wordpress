@@ -1,4 +1,4 @@
-# Custom Wordpress App for VRQC
+# Custom Wordpress/AngularJS App for VRQC
 ===============================
 ##Benefits
 * Easy to use for customers and administrators
@@ -22,8 +22,9 @@ The following code can be used in any controller ($scope), directive (scope), or
             console.log('Sorry, no data from posts.');
     });
 
-#### // TODO
+##### // TODO
 * enable custom fields on post editing
 * set calendar / form to smart
 * weather
 * Put in real info!! yay
+* Build filters for posts and properties
