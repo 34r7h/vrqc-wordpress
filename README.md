@@ -12,7 +12,9 @@
 * Communicates with the Wordpress back-end via HTTP.get() requests
 
 ##Basic API Request
-    $http.get('http://localhost/vrqc/?json=get_posts')
+The following code can be used in any controller, directive, or service.
+ 
+    $http.get('http://localhost/vrqc/api/get_posts')
         .success(function (data, status, headers, config) {
             console.log('propertyPosts',data);
             $scope.vrqc.posts = data;
@@ -23,5 +25,5 @@
 ### // TODO
 * enable custom fields on post editing
 * set calendar / form to smart
-* Weather
+* weather
 * Put in real info!! yay
