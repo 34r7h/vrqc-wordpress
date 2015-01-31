@@ -30,7 +30,7 @@ The following code can be used in any controller ($scope), directive (scope), or
 * Update README with all the `possibilities`!
 * Garbage collection when resources are removed, etc
 
-
+***
 ###### Custom Properties for JSON API
 added to plugins/json-api/models/post.php ~ line 122
     // support for custom fields
