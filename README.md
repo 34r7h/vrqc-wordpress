@@ -9,7 +9,7 @@
 
 ##Features
 * Uses a modern JSON RESTful API
-* Communicates with the Wordpress back-end via HTTP.get() requests
+* Communicates with the Wordpress back-end via $http.get() requests
 
 ##Basic API Request
 The following code can be used in any controller ($scope), directive (scope), or service (what.ever).
@@ -26,5 +26,5 @@ The following code can be used in any controller ($scope), directive (scope), or
 * enable custom fields on post editing
 * set calendar / form to smart
 * weather
-* Put in real info!! yay
 * Build filters for posts and properties
+* Update README with all the `possibilities`!
