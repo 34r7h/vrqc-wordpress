@@ -3,7 +3,9 @@
 $post = get_post();
 $title = $post->ID;
 echo get_the_post_thumbnail($title, 'full');
-?></div>
+wp_reset_query();
+
+    ?></div>
 <div class="container">
     <div class="col-md-9 clearfix">
         <section class="clearfix">

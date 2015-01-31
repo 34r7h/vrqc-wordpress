@@ -7,12 +7,14 @@
 </footer>
 
 <ul>
-    <li ng-repeat="(key, value) in postData[0]">
-        {{key+': '+value}}
+    <li ng-repeat="(key, value) in postData">
+        Post Data = {{key+': '+value}}
     </li>
 </ul>
 
 <?php wp_footer();?>
+
+
 
 </body>
 </html>

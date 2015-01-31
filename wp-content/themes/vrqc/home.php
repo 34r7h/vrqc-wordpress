@@ -23,5 +23,6 @@
             <?php echo "</div>"; ?>
             <?php } // done the foreach statement ?>
 
+
 </div>
 <?php get_footer(); ?>
