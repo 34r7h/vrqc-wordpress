@@ -12,8 +12,8 @@
 * Communicates with the Wordpress back-end via HTTP.get() requests
 
 ##Basic API Request
-The following code can be used in any controller, directive, or service.
- 
+The following code can be used in any controller ($scope), directive (scope), or service (what.ever).
+
     $http.get('http://localhost/vrqc/api/get_posts')
         .success(function (data, status, headers, config) {
             console.log('propertyPosts',data);
@@ -22,7 +22,7 @@ The following code can be used in any controller, directive, or service.
             console.log('Sorry, no data from posts.');
     });
 
-### // TODO
+#### // TODO
 * enable custom fields on post editing
 * set calendar / form to smart
 * weather
