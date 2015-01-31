@@ -5,8 +5,8 @@
 * Easy to use for customers and administrators
 * Fast loading SPA (Single Page Application)
 * Automagically pulls and posts to other services
-** HomeAway
-** AirBnB
+    ** HomeAway
+    ** AirBnB
 
 ##Features
 --
