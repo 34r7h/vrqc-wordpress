@@ -50,37 +50,42 @@ app.controller('vrqcCtrl', function($scope, $http, $rootScope, $timeout){
             });*/
             $http.get('http://localhost/vrqc/?json=get_posts&post_type=easy-rooms')
                 .success(function (data, status, headers, config) {
-                    console.log(data);
+                    console.log('propertiesData',data);
                     $scope.vrqc.propertiesData = data;
                     angular.forEach($scope.vrqc.propertiesData.posts, function(property){
                         $http.get('http://localhost/vrqc/api/get_post/?slug='+property.slug).success(function(data){
                             $scope.slug = data.status;
                             if( $scope.slug === 'error' ) {
-
-                                $http.get('http://localhost/vrqc/?json=create_post&nonce=836a4c0360&title=' + property.title + '&categories=properties&status=publish')
+                                $http.get('http://localhost/vrqc/?json=create_post&nonce=836a4c0360&title=' + property.title + '&categories=properties&status=publish&custom[name]=herryo&custom[age]=retro')
                                     .success(function (data, status, headers, config) {
                                         console.log('newpost', data);
                                     }).error(function (data, status, headers, config) {
                                         console.log('newpost', 'sucks');
                                     });
                             }
-                            }
-                        );
+                        });
                     })
                 }).error(function (data, status, headers, config) {
                     console.log('sucks');
             });
             $http.get('http://localhost/vrqc/?json=get_posts&cat=-5,-2,-7')
                 .success(function (data, status, headers, config) {
-                    console.log(data);
+                    console.log('postsData',data);
                     $scope.vrqc.postsData = data;
                 }).error(function (data, status, headers, config) {
                     console.log('sucks');
             });
             $http.get('http://localhost/vrqc/?json=get_posts&cat=5')
                 .success(function (data, status, headers, config) {
-                    console.log(data);
+                    console.log('OffersData',data);
                     $scope.vrqc.offersData = data;
+                }).error(function (data, status, headers, config) {
+                    console.log('sucks');
+            });
+            $http.get('http://localhost/vrqc/?json=get_posts&cat=7')
+                .success(function (data, status, headers, config) {
+                    console.log('propertyPosts',data);
+                    $scope.vrqc.propertyPosts = data;
                 }).error(function (data, status, headers, config) {
                     console.log('sucks');
             });

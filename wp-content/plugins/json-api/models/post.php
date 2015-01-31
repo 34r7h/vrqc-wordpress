@@ -57,7 +57,7 @@ class JSON_API_Post {
     if (!empty($values['id'])) {
       $wp_values['ID'] = $values['id'];
     }
-    
+
     if (!empty($values['type'])) {
       $wp_values['post_type'] = $values['type'];
     }
@@ -118,6 +118,13 @@ class JSON_API_Post {
       $this->attachments[] = new JSON_API_Attachment($attachment_id);
       unset($_FILES['attachment']);
     }
+
+    // support for custom fields
+    if ( !empty($values["custom"]) ) {
+    foreach ($values["custom"] as $metakey => $metavalue) {
+    update_post_meta($this->id,$metakey, $metavalue);
+    }
+}
     
     $wp_post = get_post($this->id);
     $this->import_wp_object($wp_post);
