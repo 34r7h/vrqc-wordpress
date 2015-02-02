@@ -24,7 +24,7 @@
         <hr/>
     </div>
     <div class="col-sm-5 col-md-7 col-xs-12 brand">
-        <a class="col-xs-12" href="">
+        <a class="col-xs-12" href="<?php echo get_site_url(); ?>">
             <img src="<?php echo( get_header_image() ); ?>" alt="<?php echo( get_bloginfo( 'title' ) ); ?>" /><span class="col-xs-9"><h1>Vacation Rentals Quebec City</h1></span>
         </a>
     </div>

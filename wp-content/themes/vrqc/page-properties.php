@@ -15,7 +15,7 @@
 
             if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-            <article class="clearfix col-xs-6">
+            <article class="clearfix col-xs-12 col-sm-6">
                 <div class="panel panel-default">
                     <a href="<?php the_permalink();?>">
                         <div class="panel panel-heading">

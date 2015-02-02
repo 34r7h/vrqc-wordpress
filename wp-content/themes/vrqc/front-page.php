@@ -8,6 +8,7 @@
         echo get_the_post_thumbnail($title, 'full');
         wp_reset_query();
     ?>
+    <hr/>
 </div>
 <div class="">
     <div class="col-xs-12 col-sm-9 col-md-8 col-lg-7">
