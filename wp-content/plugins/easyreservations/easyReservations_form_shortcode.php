@@ -244,7 +244,7 @@ function reservations_form_shortcode($atts){
 			if(isset($field['color']) && $field['color'] == 'white') $captcha->fg = array( 255, 255, 255 );
 			$prefix = mt_rand();
 			$url = $captcha->generate_image($prefix, $captcha->generate_random_word());
-			$theForm=preg_replace('/\['.$fields.'\]/', '<span class="row"><input type="text" title="'.$title.'" name="captcha_value" id="easy-form-captcha" style="width:40px;'.$style.'" ><img id="easy-form-captcha-img"	style="vertical-align:middle;margin-top: -5px;" src="'.RESERVATIONS_URL.'lib/captcha/tmp/'.$url.'"><input type="hidden" value="'.$prefix.'" name="captcha_prefix"></span>', $theForm);
+			$theForm=preg_replace('/\['.$fields.'\]/', '<span class="row"><input type="text" title="'.$title.'" name="captcha_value" id="easy-form-captcha" style="width:40px;'.$style.'" ><span class="captcha-image"><img id="easy-form-captcha-img"	style="vertical-align:middle;margin-top: -5px;" src="'.RESERVATIONS_URL.'lib/captcha/tmp/'.$url.'"></span><input type="hidden" value="'.$prefix.'" name="captcha_prefix"></span>', $theForm);
 		} elseif($field[0]=="hidden"){
 			if($field[1]=="room" || $field[1]=="resource"){
 				$roomfield=1;
@@ -274,11 +274,11 @@ function reservations_form_shortcode($atts){
 				$form_field = '';
 				if(isset($custom_fields['fields'][$field['id']])){
 					$custom_field = $custom_fields['fields'][$field['id']];
-					$onchange = '';
-					$style = '';
+					$onchange = ''; $style = '';
 					if(isset($field['style'])) $style = ' style="'.$field['style'].'"';
-					if(isset($custom_field['required'])) $onchange = ' onchange="'.$validate_action.'"';
-					elseif(isset($custom_field['price'])) $onchange = ' onchange="'.$price_action.'"';
+					if(isset($custom_field['required'])) $onchange = $validate_action.';';
+					if(isset($custom_field['price'])) $onchange .= $price_action;
+					if(!empty($onchange)) $onchange = ' onchange="'.$onchange.'"';
 					$form_field = easyreservations_generate_custom_field($field['id'], false, $style.$onchange);
 				}
 				$theForm=str_replace($fields, $form_field, $theForm);

@@ -204,8 +204,8 @@ input[type=text], select {
 	Settings Navigation
 	
 */
-.tabs-box {
-	width:99% !important;
+.reservation_page_reservation-settings .tabs-box {
+    width:99% !important;
 	color: #fff;
 	border:1px solid #575757 !important;
 	height:40px;

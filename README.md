@@ -8,6 +8,7 @@
     * AirBnB
 
 ##Features
+* Twitter Bootstrap 3.0 Responsive Layout
 * Uses a modern JSON RESTful API
 * Communicates with the Wordpress back-end via $http.get() requests
 
@@ -23,18 +24,21 @@ The following code can be used in any controller ($scope), directive (scope), or
     });
 
 ##### // TODO
-* enable custom fields on post editing
-* set calendar / form to smart
+* set a watcher to check for value changes to properties and update the corresponding post.
+* set calendar/form to smart (based on property post reference.)
 * weather
 * Build filters for posts and properties
 * Update README with all the `possibilities`!
 * Garbage collection when resources are removed, etc
 
 ***
-###### Custom Properties for JSON API
-added to plugins/json-api/models/post.php ~ line 122
+***
+###### add to plugins/json-api/models/post.php ~ line 122 if JSON API updates
+
     // support for custom fields
     if ( !empty($values["custom"]) ) {
         foreach ($values["custom"] as $metakey => $metavalue) {
         update_post_meta($this->id,$metakey, $metavalue);
     }
+
+*Custom fields might not be visible on post editing, check that Screen Options is enabled.*

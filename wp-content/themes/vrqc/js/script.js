@@ -35,6 +35,7 @@ app.controller('vrqcCtrl', function($scope, $http, $rootScope, $timeout){
         $scope.vrqc.propertiesData = {};
         $scope.vrqc.postsData = {};
         $scope.vrqc.offersData = {};
+        $scope.vrqc.weather = {};
         $timeout(function(){
             /*$http({
                 method: 'GET',
@@ -48,7 +49,7 @@ app.controller('vrqcCtrl', function($scope, $http, $rootScope, $timeout){
                 $scope.postsData=data;
             }).error(function (data, status, headers, config) {
             });*/
-            $http.get('http://localhost/vrqc/?json=get_posts&post_type=easy-rooms')
+            $http.get('http://localhost/vrqc/api/get_posts/?post_type=easy-rooms')
                 .success(function (data, status, headers, config) {
                     console.log('propertiesData',data);
                     $scope.vrqc.propertiesData = data;
@@ -86,6 +87,13 @@ app.controller('vrqcCtrl', function($scope, $http, $rootScope, $timeout){
                 .success(function (data, status, headers, config) {
                     console.log('propertyPosts',data);
                     $scope.vrqc.propertyPosts = data;
+                }).error(function (data, status, headers, config) {
+                    console.log('sucks');
+            });
+            $http.get('http://api.wunderground.com/api/d26d4a3f9b087f03/geolookup/conditions/q/Canada/Québec.json')
+                .success(function (data, status, headers, config) {
+                    console.log('weather',data);
+                    $scope.vrqc.weather = data.current_observation;
                 }).error(function (data, status, headers, config) {
                     console.log('sucks');
             });

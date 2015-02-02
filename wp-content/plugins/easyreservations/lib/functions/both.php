@@ -393,6 +393,8 @@
 	}
 
 	function get_custom_submit($array, $error){
+		$custom_form = array();
+
 		global $the_rooms_intervals_array;
 		if(isset($_POST['formname']))$theForm = stripslashes(get_option('reservations_form_'.$_POST['formname']));
 		else $theForm = stripslashes(get_option("reservations_form"));
@@ -402,7 +404,6 @@
 		$tags = easyreservations_shortcode_parser($theForm, true);
 		$custom_fields = get_option('reservations_custom_fields');
 		$custom_price = '';
-		$done = '';
 
 		foreach($tags as $fields){
 			$field=shortcode_parse_atts( $fields);
@@ -455,9 +456,9 @@
 				if($sel) $value = $sel;
 				$form_field = '<textarea name="easy-new-custom-'.$id.'" id="easy-new-custom-'.$id.'"'.$after.'>'.$value.'</textarea>';
 			} elseif($custom_field['type'] == 'check'){
-				$checked = '';
 				foreach($custom_field['options'] as $opt_id => $option){
-					if($sel || (!$sel && $option['checked'])) $checked = ' checked="checked"';
+					if($sel || (!$sel && isset($option['checked']))) $checked = ' checked="checked"';
+					else $checked = '';
 					$form_field .= '<input type="checkbox" name="easy-new-custom-'.$id.'" id="easy-new-custom-'.$id.'" value="'.$opt_id.'" '.$checked.$after.'>';
 				}
 			} elseif($custom_field['type'] == 'radio'){
@@ -801,12 +802,29 @@ EOF;
 	function easyreservations_verify_nonce($nonce, $action = -1) {
 		$i = wp_nonce_tick();
 		// Nonce generated 0-12 hours ago
-		if ( substr(wp_hash($i . $action . '0', 'nonce'), -12, 10) === $nonce )
+		if ( hash_equals(substr(wp_hash($i .'|'.$action . '|0', 'nonce'), -12, 10), $nonce) )
 			return 1;
 		// Nonce generated 12-24 hours ago
-		if ( substr(wp_hash(($i - 1) . $action . '0', 'nonce'), -12, 10) === $nonce )
+		if ( hash_equals( substr(wp_hash(($i - 1) .'|'.$action . '|0', 'nonce'), -12, 10) , $nonce ) )
 			return 2;
 		// Invalid nonce
 		return false;
 	}
+
+	function easyreservations_calculate_out_summertime($timestamp, $begin){
+		$diff = 0;
+		if(version_compare(PHP_VERSION, '5.3.0') >= 0 && is_numeric($timestamp)){
+			$timezone = new DateTimeZone(date_default_timezone_get ());
+			$transitions = $timezone->getTransitions($begin, $timestamp);
+			if(isset($transitions[1]) && $transitions[0]['offset'] != $transitions[1]['offset']){
+				$diff = $transitions[1]['offset'] - $transitions[0]['offset'];
+				//if($transitions[0]['offset'] < $transitions[1]['offset']) $diff = $transitions[0]['offset'] - $transitions[1]['offset'];
+				//else $diff = $transitions[1]['offset'] - $transitions[0]['offset'];
+			}
+		}
+		return ($timestamp-$diff);
+	}
+
+
+
 ?>

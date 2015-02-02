@@ -745,13 +745,16 @@ if($show['show_overview']==1){ //Hide Overview completly
 		if(activres[0]){
 			var ares = document.getElementById(activres[0].id);
 			var firstDate = <?php if(isset($res->arrival)) echo $res->arrival; else echo 0; ?>;
+			var idbefor = ares.previousSibling;
+
 			if(ares.getAttribute("colSpan") == null){
 				var splitidbefor=ares.id.split("-");
 				ares.setAttribute("onclick", "changer();clickTwo(this,'"+firstDate+"'); clickOne(this,'"+firstDate+"'); setVals2('"+splitidbefor[0]+"','"+splitidbefor[1]+"');");
+				idbefor = ares;
 				ares = ares.nextSibling;
+				if(ares.id == null) ares = ares.nextSibling;
 			}
 			var i = 0;
-			var idbefor = ares.previousSibling;
 			if(idbefor.className == 'roomhead'){
 				var splitidbefor = activres[0].id.split("-");
 				splitidbefor[2] = + parseFloat(splitidbefor[2]) -1;
@@ -763,6 +766,8 @@ if($show['show_overview']==1){ //Hide Overview completly
 
 			if(!Colspan || Colspan < 1) Colspan = 1;
 			jQuery('td[name="activeres"]').removeAttr('class');
+			if(ares == null) print(1);
+			console.log(  ares);
 
 			ares.setAttribute("colSpan", "1");
 			ares.removeAttribute("class");
@@ -770,7 +775,7 @@ if($show['show_overview']==1){ //Hide Overview completly
 			ares.removeAttribute("name");
 			if(ares.firstChild) ares.removeChild(ares.firstChild);
 			ares.setAttribute("onclick", "changer();clickTwo(this,'"+firstDate+"'); clickOne(this,'"+firstDate+"'); setVals2('"+splitidbefor[0]+"','"+splitidbefor[1]+"');");
-
+			console.log(Colspan);
 			while(i != Colspan){
 				firstDate += 86400;
 				var clone = ares.cloneNode(true);

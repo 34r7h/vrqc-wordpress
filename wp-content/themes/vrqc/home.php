@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div class="container">
+<div class="">
     <?php
             // get all the categories from the database
             $args = array('exclude'=> '1, 2, 5, 7');
@@ -20,9 +20,8 @@
                             </a>
                         </article>
                 <?php endwhile; endif; // done our wordpress loop. Will start again for each category ?>
-            <?php echo "</div>"; ?>
             <?php } // done the foreach statement ?>
 
-
+</div>
 </div>
 <?php get_footer(); ?>

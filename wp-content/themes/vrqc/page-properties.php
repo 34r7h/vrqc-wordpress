@@ -1,60 +1,43 @@
 <?php get_header(); ?>
-<div class="container" ng-controller="vrqcCtrl">
-    <article class="col-xs-12 col-sm-8">
+<div>
+    <article class="col-xs-12">
         <section class="clearfix">
             <nav><h3>Condo Filtering</h3></nav>
-            <div ng-repeat="post in postData">
-                {{post.title}}
-            </div>
+            <?php
+            // get all the properties category
+            $args = array('include'=> '7');
+            $cats = get_categories($args);
 
-            <!--<?php
-                $query = new WP_Query(array(
-                    'post_type' => 'easy-rooms',
-                    'post_status' => 'publish',
-                    'posts_per_page' => -1
-                ));
+            foreach ($cats as $cat) {
+            echo "<div class='clearfix'>";
+            $cat_id= $cat->term_id;
+            query_posts("cat=$cat_id&posts_per_page=5");
 
+            if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-            while ($query->have_posts()) {
-            $query->the_post();
-            $post_id = get_the_ID();
-            $post_URL = get_permalink();
-            echo $post_id;
-            echo '<div gethtml>'. $post_URL .'</div>';
-            echo '<article class="clearfix">
-                    <div class="col-xs-12 col-sm-7">
-                        <img width="100%" src="http://wayneroberts.ca/wp-content/uploads/2012/12/quebec.jpg" alt=""/>
-                    </div>
-                    <div class="col-xs-12 col-sm-5"></div>
-                    <div class="col-xs-12 col-sm-5">'. get_the_content().'</div>
-                    <div ng-repeat="(key, value) in postData[0]">{{value}}</div>
-                </article>';
-            echo "<br>";
-            wp_reset_postdata();
-
-            }
-
-            ?>
--->
-            <article class="clearfix">
-                <div class="col-xs-12 col-sm-7">
-                    <img width="100%" src="http://wayneroberts.ca/wp-content/uploads/2012/12/quebec.jpg" alt=""/>
+            <article class="clearfix col-xs-6">
+                <div class="panel panel-default">
+                    <a href="<?php the_permalink();?>">
+                        <div class="panel panel-heading">
+                            <h4><i class="fa fa-home"> <?php the_title(); ?></i></h4>
+                        </div>
+                        <div class="frontpage-post panel-body">
+                            <?php echo get_the_post_thumbnail() ?>
+                            <p><?php the_content('More'); ?></p>
+                        </div>
+                        <div class="panel-footer">
+                            <p>Herro</p>
+                        </div>
+                    </a>
                 </div>
-                <div class="col-xs-12 col-sm-5">Description 1</div>
             </article>
-            <hr/>
-            <article class="clearfix">
-                <div class="col-xs-12 col-sm-7">
-                    <img width="100%" src="http://wayneroberts.ca/wp-content/uploads/2012/12/quebec.jpg" alt=""/>
-                </div>
-                <div class="col-xs-12 col-sm-5">Description 2</div>
-            </article>
+
+            <?php endwhile; endif; // done our wordpress loop. Will start again for each category ?>
+            <?php } // done the foreach statement ?>
+        </div>
             <hr/>
         </section>
     </article>
-    <aside class="col-xs-12 col-sm-4">
-        <?php get_sidebar(); ?>
-    </aside>
 </div>
 <?php get_footer(); ?>
 

@@ -143,7 +143,6 @@ ID: [ID]<br>Name: [thename] <br>Email: [email] <br>From: [arrival] <br>To: [depa
 		$room_args = array( 'post_status' => 'publish|private', 'post_type' => 'easy-rooms', 'orderby' => 'post_title', 'order' => 'ASC', 'numberposts' => 1);
 		$roomcategories = get_posts( $room_args );
 		if(!$roomcategories){
-
 			$roomOne = array(
 				'post_title' => 'Sample Resource One',
 				'post_content' => 'This is a Sample Resource.',

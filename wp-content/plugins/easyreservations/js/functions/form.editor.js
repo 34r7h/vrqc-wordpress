@@ -79,6 +79,7 @@ jQuery('#formcontainer').bind("paste",function(e){
 	setTimeout(function(e) {
 		var value = jQuery('#formcontainer').html().replace("&nbsp;", "<br>\r\n");
 		jQuery('#formcontainer').html(value);
+		jQuery('#formcontainer *').removeAttr("style");
 	}, 0);
 });
 

@@ -12,6 +12,7 @@ Some other comments or urls here that will prove useful reminders to you or anot
 */
 
 @import url("//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css");
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css");
 /* @import url("css/ie.css"); */
 
 .text-info {
@@ -41,11 +42,20 @@ a:hover {
 
 }
 
+img {border-radius:5px}
+
+.brand h1 {font-size: 1.4em}
 .brand img {
-    max-width: 61%;
-    padding: 1.618%;
-    min-width:62px;
+    width: 100%;
+    max-width:100px;
+    float: left;
 }
+
+/*.navbar-toggle {
+    position: absolute;
+    right: 0;
+    top: -72px;
+}*/
 
 .camera_wrap img, .post img, .property img {
   width:100%;
@@ -78,3 +88,8 @@ body {
 .header-info h1 {padding:0; margin:0; font-size: 1.618em}
 .post-group {}
 .property {}
+
+.frontpage-post img {width:100%; height:auto}
+.weather {
+    padding: 5px;
+}
