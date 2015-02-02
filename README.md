@@ -11,6 +11,7 @@
 * Twitter Bootstrap 3.0 Responsive Layout
 * Uses a modern JSON RESTful API
 * Communicates with the Wordpress back-end via $http.get() requests
+* Real-time weather update
 
 ##Basic API Request
 The following code can be used in any controller ($scope), directive (scope), or service (what.ever).
@@ -26,7 +27,6 @@ The following code can be used in any controller ($scope), directive (scope), or
 ##### // TODO
 * set a watcher to check for value changes to properties and update the corresponding post.
 * set calendar/form to smart (based on property post reference.)
-* weather
 * Build filters for posts and properties
 * Update README with all the `possibilities`!
 * Garbage collection when resources are removed, etc
