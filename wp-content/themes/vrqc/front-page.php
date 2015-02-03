@@ -12,8 +12,8 @@
 </div>
 <div class="">
     <div class="col-xs-12 col-sm-9 col-md-8 col-lg-7">
-        <section class="col-xs-12">
-            <nav><h3>Condo Filtering</h3></nav>
+        <section class="panel panel-default">
+            <h3 class="panel-heading">Condo Filtering</h3>
             <?php
             // get all the properties category
             $args = array('include'=> '7');
@@ -26,7 +26,7 @@
 
             if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-            <article class="clearfix">
+            <article class="clearfix panel-body">
                 <a href="<?php the_permalink();?>">
                     <div class="col-xs-12 col-sm-5 frontpage-post">
                         <?php echo get_the_post_thumbnail() ?>
@@ -45,21 +45,21 @@
             <hr/>
         </section>
         <section>
-            <nav><h3>Post Filtering</h3></nav>
+            <h3>Post Filtering</h3>
                 <?php
             // get all the categories from the database except test, offrs, and properties
             $args = array('exclude'=> '1, 2, 5, 7');
                 $cats = get_categories($args);
 
                 foreach ($cats as $cat) {
-                echo "<div class='clearfix post-group col-sm-4'>";
+                echo "<div class='clearfix post-group col-sm-4'><div class='panel panel-default'>";
                 $cat_id= $cat->term_id;
-                echo "<h2>".$cat->name."</h2>";
+                echo "<h2 class='panel-heading'>".$cat->name."</h2>";
                 query_posts("cat=$cat_id&posts_per_page=1");
 
                 if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-                <article>
+                <article class="panel-body">
                     <a href="<?php the_permalink();?>">
                         <div class="frontpage-post">
                             <?php echo get_the_post_thumbnail() ?>
@@ -70,7 +70,7 @@
                     </a>
                     <hr/>
                 </article>
-
+</div>
 
                 <?php endwhile; endif; // done our wordpress loop. Will start again for each category ?>
                 <?php echo "</div>"; ?>
