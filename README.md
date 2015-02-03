@@ -31,8 +31,10 @@ The following code can be used in any controller ($scope), directive (scope), or
 * Masonry http://w3bits.com/css-masonry/
 * Update README with all the `possibilities`!
 * Garbage collection when resources are removed, etc
+* Style purchase workflow
 
 ***
+When exporting this theme to a new database, be sure to update the theme files with appropriate category ids
 ***
 ###### add to plugins/json-api/models/post.php ~ line 122 if JSON API updates
 
