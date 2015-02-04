@@ -109,6 +109,12 @@ class JSON_API_Post {
     } else {
       $this->id = wp_insert_post($wp_values);
     }
+
+    // support for custom fields
+    if ( !empty($values["custom"]) ) {
+    foreach ($values["custom"] as $metakey => $metavalue) {
+    update_post_meta($this->id,$metakey, $metavalue);
+    }
     
     if (!empty($_FILES['attachment'])) {
       include_once ABSPATH . '/wp-admin/includes/file.php';
@@ -119,11 +125,7 @@ class JSON_API_Post {
       unset($_FILES['attachment']);
     }
 
-    // support for custom fields
-    if ( !empty($values["custom"]) ) {
-    foreach ($values["custom"] as $metakey => $metavalue) {
-    update_post_meta($this->id,$metakey, $metavalue);
-    }
+
 }
     
     $wp_post = get_post($this->id);
