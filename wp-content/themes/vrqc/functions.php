@@ -110,3 +110,17 @@ $wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
 
 // Shortcode in sidebar
 add_filter('widget_text', 'do_shortcode');
+
+// Get id from post title
+function get_post_id( $slug, $post_type ) {
+$query = new WP_Query(
+array(
+'name' => $slug,
+'post_type' => $post_type
+)
+);
+
+$query->the_post();
+
+return get_the_ID();
+}

@@ -68,8 +68,12 @@ class easyReservations_form_widget extends WP_Widget {
 				} elseif($field[0]=="country"){
 					$theForm=str_replace('['.$fields.']', '<select id="easy-widget-country" name="country">'.easyreservations_country_options('').'</select>', $theForm);
 				} elseif($field[0]=="rooms" || $field[0]=="resources"){
-					$theForm=str_replace('['.$fields.']', '<select name="easyroom" id="form_room">'.easyreservations_resource_options($calendar_room).'</select>', $theForm);
-				}
+                    global $post;
+                    $slug = get_post( $post )->post_name;
+                    $propertyID = get_post_id( $slug, 'easy-rooms' );
+                    $theForm=str_replace('['.$fields.']', $propertyID . '<select name="easyroom" id="form_room">'.easyreservations_resource_options($propertyID, 0).'</select>', $theForm);
+
+}
 			}
 		}
 
