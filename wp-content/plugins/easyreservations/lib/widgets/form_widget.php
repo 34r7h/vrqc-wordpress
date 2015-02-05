@@ -71,7 +71,7 @@ class easyReservations_form_widget extends WP_Widget {
                     global $post;
                     $slug = get_post( $post )->post_name;
                     $propertyID = get_post_id( $slug, 'easy-rooms' );
-                    $theForm=str_replace('['.$fields.']', $propertyID . '<select name="easyroom" id="form_room">'.easyreservations_resource_options($propertyID, 0).'</select>', $theForm);
+                    $theForm=str_replace('['.$fields.']', $slug . '<select name="easyroom" id="form_room">'.easyreservations_resource_options($propertyID, 0).'</select>', $theForm);
 
 }
 			}
@@ -140,14 +140,16 @@ class easyReservations_form_widget extends WP_Widget {
 			$calendar = esc_attr( $instance['calendar'] );
 			$calendar_price = esc_attr( $instance['calendar_price'] );
 		} else {
-			$title = __( 'Reserve now!', 'easyReservations' );
+            global $post;
+            $postTitle = get_the_title($post->ID);
+			$title = __( $postTitle . 'Reserve now!', 'easyReservations' );
 			$calendar_width = 100;
 			$calendar_style = 1;	
 			$calendar_room = 1;
 			$calendar_price = 0;
 			$calendar = 1;
 			$form_url = __( 'type in URL to a form', 'easyReservations' );
-			$form_button = __( 'Reserve now!', 'easyReservations' );
+			$form_button = __( $postTitle . 'Reserve now!', 'easyReservations' );
 			$form_editor = '[date-from] [date-from-hour] [date-from-min]<br>[date-to] [date-to-hour] [date-to-min]<br>
 <label>Res:</label> [resources]<br>
 <label>Name:</label> [thename]<br>

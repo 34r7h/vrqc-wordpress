@@ -26,7 +26,6 @@ The following code can be used in any controller ($scope), directive (scope), or
 
 ##### // TODO
 * set a watcher to check for value changes to properties and update the corresponding post.
-* set calendar/form to smart (based on property post reference.)
 * Build filters for posts and properties : began a method to keep an index of posts in php loops.
 * Masonry http://w3bits.com/css-masonry/
 * Update README with all the `possibilities`!

@@ -11,8 +11,41 @@
                 </i>
             </h1>
             <?php echo get_the_post_thumbnail(); ?>
+            <hr/>
+            <div  ng-init="nav.property = ['Overview', 'Reviews', 'Availability', 'Location', 'Photos']" class="col-xs-12 btn-group btn-group-justified">
+                <a ng-repeat="section in nav.property" type="button" class="btn btn-default">{{section}}</a>
+            </div>
+            <hr/>
+
+
             <div class="panel-body">
-                <?php echo the_content(); ?>
+                <div class="col-xs-12 well">
+                    At a glance..
+                </div>
+                <div class="col-xs-12 well">
+                    <h2>Overview</h2>
+                    <?php echo the_content(); ?>
+                </div>
+                <div ng-init="loc.address='779+Côte+de+la+Citadelle,+Quebec+City,+QC,+Canada'; loc.src = $sce.trustAsHtml('http://www.google.com/maps/embed/v1/place?q='+ loc.address +'&key=AIzaSyBOX888m2mY9tbI1PgtJcgGvb7KsjTxTzE')" class="col-xs-12 well ">
+                    <h2>Location</h2>
+                    <div class="google-maps">
+                        <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=779%20C%C3%B4te%20de%20la%20Citadelle%2C%20Quebec%20City%2C%20QC%2C%20Canada&key=AIzaSyBOX888m2mY9tbI1PgtJcgGvb7KsjTxTzE"></iframe>
+                    </div>                      <!--<iframe
+                            width="600"
+                            height="450"
+                            frameborder="0"
+                            style="border:0"
+                            ng-src="{{loc.src}}">
+
+                    </iframe>-->
+                </div>
+                <div class="col-xs-12 well">
+                    <h2>Photos</h2>
+                </div>
+                <div class="col-xs-12 well">
+                    <h2>Reviews</h2>
+                </div>
+
             </div>
         </div>
     </article>

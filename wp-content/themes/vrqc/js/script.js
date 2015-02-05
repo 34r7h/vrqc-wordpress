@@ -30,7 +30,7 @@ app.controller('vrqcCtrl', function($scope, $http, $rootScope, $timeout){
         });
     }, 0)
 })
-.controller('vrqcPropCtrl', function($scope, $http, $rootScope, $timeout){
+.controller('vrqcPropCtrl', function($scope, $http, $rootScope, $timeout, $sce){
         $scope.vrqc = {};
         $scope.vrqc.propertiesData = {};
         $scope.vrqc.postsData = {};
@@ -142,5 +142,8 @@ app.controller('vrqcCtrl', function($scope, $http, $rootScope, $timeout){
                 }).error(function (data, status, headers, config) {
                     //console.log('sucks');
             });
-        },0)
+        },0);
+        $scope.encode = function(string){
+            return $sce.trustAsHtml(encodeURI(string));
+        }
 });
