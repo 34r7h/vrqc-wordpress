@@ -10,7 +10,9 @@
                     ?>
                 </i>
             </h1>
-            <?php echo get_the_post_thumbnail(); ?>
+            <div class="property-featured">
+                <?php echo get_the_post_thumbnail(); ?>
+            </div>
             <hr/>
             <div  ng-init="nav.property = ['Overview', 'Reviews', 'Availability', 'Location', 'Photos']" class="col-xs-12 btn-group btn-group-justified">
                 <a ng-repeat="section in nav.property" type="button" class="btn btn-default">{{section}}</a>

@@ -30,10 +30,12 @@ app.controller('vrqcCtrl', function($scope, $http, $rootScope, $timeout){
         });
     }, 0)
 })
-.controller('vrqcPropCtrl', function($scope, $http, $rootScope, $timeout, $sce){
+.controller('vrqcPropCtrl', function($scope, $http, $rootScope, $timeout, $sce, $location){
         $scope.vrqc = {};
         $scope.vrqc.propertiesData = {};
+        $scope.vrqc.propertiesObject = {};
         $scope.vrqc.postsData = {};
+        $scope.vrqc.postData = {};
         $scope.vrqc.offersData = {};
         $scope.vrqc.weather = {};
         $timeout(function(){
@@ -54,6 +56,8 @@ app.controller('vrqcCtrl', function($scope, $http, $rootScope, $timeout){
                     //console.log('propertiesData',data);
                     $scope.vrqc.propertiesData = data;
                     angular.forEach($scope.vrqc.propertiesData.posts, function(property){
+                        $scope.vrqc.propertiesObject[property.slug]=property;
+
                         //console.log('property.custom_fields', property.custom_fields);
                         $http.get('http://localhost/vrqc/api/get_post/?slug='+property.slug).success(function(data){
                             var status = data.status,
@@ -91,7 +95,7 @@ app.controller('vrqcCtrl', function($scope, $http, $rootScope, $timeout){
                                     });
                                 },1000);
                             } else if(status === 'ok' && property.custom_fields != post.custom_fields){
-                                console.log('Some custom property fields should copy over to posts..');
+                                /*console.log('Some custom property fields should copy over to posts..');
 
                                 $timeout(function(){
                                     var custom = '';
@@ -107,13 +111,14 @@ app.controller('vrqcCtrl', function($scope, $http, $rootScope, $timeout){
                                         }).error(function (data, status, headers, config) {
                                             console.log('post.custom_fields', 'Didn\'t happen.');
                                     });
-                                },2000)
+                                },2000)*/
                             }
                         });
                     })
                 }).error(function (data, status, headers, config) {
                     console.log('sucks');
             });
+            // All regular posts
             $http.get('http://localhost/vrqc/?json=get_posts&cat=-5,-2,-7')
                 .success(function (data, status, headers, config) {
                     //console.log('postsData',data);
@@ -121,6 +126,22 @@ app.controller('vrqcCtrl', function($scope, $http, $rootScope, $timeout){
                 }).error(function (data, status, headers, config) {
                     //console.log('sucks');
             });
+            // Specific Post or Page
+            $http.get($location.$$absUrl+'?json=1')
+                .success(function (data, status, headers, config) {
+                    //console.log('postsData',data);
+                    $scope.vrqc.postData = data;
+                    // Get Corresponding Property Data
+                    if(data.post.categories[0].slug === 'properties'){
+                        $scope.vrqc.propertyData = $scope.vrqc.propertiesObject[data.post.slug];
+                        $timeout(function(){
+                            $scope.vrqc.propertyDataId = $scope.vrqc.propertyData['id'];
+                        },0)
+                    }
+                }).error(function (data, status, headers, config) {
+                    //console.log('sucks');
+            });
+            // Offer Posts
             $http.get('http://localhost/vrqc/?json=get_posts&cat=5')
                 .success(function (data, status, headers, config) {
                     //console.log('OffersData',data);
@@ -128,6 +149,7 @@ app.controller('vrqcCtrl', function($scope, $http, $rootScope, $timeout){
                 }).error(function (data, status, headers, config) {
                     //console.log('sucks');
             });
+            // Property Posts
             $http.get('http://localhost/vrqc/?json=get_posts&cat=7')
                 .success(function (data, status, headers, config) {
                     //console.log('propertyPosts',data);
@@ -135,6 +157,7 @@ app.controller('vrqcCtrl', function($scope, $http, $rootScope, $timeout){
                 }).error(function (data, status, headers, config) {
                     //console.log('sucks');
             });
+            // Weather API
             $http.get('http://api.wunderground.com/api/d26d4a3f9b087f03/geolookup/conditions/q/Canada/Québec.json')
                 .success(function (data, status, headers, config) {
                     //console.log('weather',data);
@@ -143,7 +166,16 @@ app.controller('vrqcCtrl', function($scope, $http, $rootScope, $timeout){
                     //console.log('sucks');
             });
         },0);
+
         $scope.encode = function(string){
             return $sce.trustAsHtml(encodeURI(string));
         }
+
+/*        $scope.propertyID = function(properties, url) {
+            $timeout(function(url){
+                console.log('url', url);
+                console.log('properties', properties);
+                console.log(properties[url]);
+            },5000);
+        }*/
 });

@@ -38,6 +38,8 @@ function my_wp_nav_menu_args( $args = '' ) {
 	return $args;
 }
 add_filter( 'wp_nav_menu_args', 'my_wp_nav_menu_args' );
+add_filter('widget_text', 'do_shortcode');
+
 
 add_theme_support( 'custom-header' );
 
@@ -49,6 +51,7 @@ add_theme_support( 'custom-background' );
 
 }
 add_action( 'after_setup_theme', 'featuredSupport' );
+
 
 // Register Sidebars
 function main_sidebar() {
@@ -100,8 +103,9 @@ add_action( 'widgets_init', 'main_sidebar' );
 add_action( 'widgets_init', 'property_sidebar' );
 add_action( 'widgets_init', 'footer_sidebar' );
 
-add_action('generate_rewrite_rules', 'attachment_rewrite_rule_14924');
 
+// TODO what's this?
+add_action('generate_rewrite_rules', 'attachment_rewrite_rule_14924');
 function attachment_rewrite_rule_14924($wp_rewrite){
 $new_rules = array();
 $new_rules['attachment/(\d*)$'] = 'index.php?attachment_id=$matches[1]';
@@ -113,14 +117,13 @@ add_filter('widget_text', 'do_shortcode');
 
 // Get id from post title
 function get_post_id( $slug, $post_type ) {
-$query = new WP_Query(
-array(
-'name' => $slug,
-'post_type' => $post_type
-)
-);
-
-$query->the_post();
-
-return get_the_ID();
+    $query = new WP_Query(
+        array(
+            'name' => $slug,
+            'post_type' => $post_type
+        )
+    );
+    $query->the_post();
+    return get_the_ID();
 }
+

@@ -32,6 +32,7 @@ The following code can be used in any controller ($scope), directive (scope), or
 * Garbage collection when resources are removed, etc
 * Style reservation workflow
 * Weather icons
+* Payment
 
 ***
 When exporting this theme to a new database, be sure to update the theme files with appropriate category ids

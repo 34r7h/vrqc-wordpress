@@ -8,7 +8,7 @@
 		$atts = shortcode_atts(array(
 			'room' => 0,
 			'date' => 0,
-			'resource' => 0,
+			'resource' => easyreservations_resource_options($propertyID, 0),
 			'width' => '300',
 			'style' => 1,
 			'price' => 0,
