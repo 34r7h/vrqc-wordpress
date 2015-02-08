@@ -25,7 +25,6 @@ The following code can be used in any controller ($scope), directive (scope), or
     });
 
 ##### // TODO
-* set a watcher to check for value changes to properties and update the corresponding post.
 * Build filters for posts and properties : began a method to keep an index of posts in php loops.
 * Masonry http://w3bits.com/css-masonry/
 * Update README with all the `possibilities`!
@@ -44,5 +43,12 @@ When exporting this theme to a new database, be sure to update the theme files w
         foreach ($values["custom"] as $metakey => $metavalue) {
         update_post_meta($this->id,$metakey, $metavalue);
     }
+
+###### add to easyReservations_form_shortcode.php ~line 270
+
+    $slug = get_post( $post )->post_name;
+    $propertyID = get_post_id( $slug, 'easy-rooms' );
+    $theForm=str_replace('['.$fields.']', '<select name="easyroom" style="'.$style.'" id="form_room" '.$disabled.' onchange="'.$price_action.$validate_action.'">'.easyreservations_resource_options($propertyID, 0).'</select>', $theForm);
+
 
 *Custom fields might not be visible on post editing, check that Screen Options is enabled.*

@@ -127,3 +127,5 @@ function get_post_id( $slug, $post_type ) {
     return get_the_ID();
 }
 
+global $post;
+
