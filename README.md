@@ -25,7 +25,7 @@ The following code can be used in any controller ($scope), directive (scope), or
     });
 
 ##### // TODO
-* Build filters for posts and properties : began a method to keep an index of posts in php loops.
+* Build filters for posts and properties.
 * Masonry http://w3bits.com/css-masonry/
 * Update README with all the `possibilities`!
 * Garbage collection when resources are removed, etc

@@ -16,9 +16,9 @@ app.controller('vrqcPropCtrl', function($scope, data){
     $scope.getTheId = data[0].propertySlug;
 
 }).factory('data', function($http, $timeout, $location){
-    var vrqc = {propertiesData:{},propertiesObject:{},propertiesById:{},propertyPostsBySlug:{},postsData:{},postData:{},offersData:{},weather:{}};
-    var nav = {properties: ['All', '1 BR', '2 BR', '3 BR', '4+ BR']};
-    var index = {propertiesById:{},propertiesBySlug:{},propertyPostsById:{},propertyPostsBySlug:{}};
+    var vrqc = {propertiesData:{},propertiesObject:{},propertiesById:{},propertyPostsBySlug:{},postsData:{},postsObject:{},postData:{},offersData:{},weather:{}};
+    var nav = {property: ['Overview','Rates','Location','Photos','Reviews'],properties: ['All', '1 BR', '2 BR', '3 BR', '4+ BR'], categories:[]};
+    var index = {postsById:{}, postsBySlug:{}, postsByCategory:{}, propertiesById:{},propertiesBySlug:{},propertyPostsById:{},propertyPostsBySlug:{}};
     $timeout(function(){
         /*$http({
          method: 'GET',
@@ -106,6 +106,18 @@ app.controller('vrqcPropCtrl', function($scope, data){
             .success(function (data, status, headers, config) {
                 //console.log('postsData',data);
                 vrqc.postsData = data;
+                angular.forEach(vrqc.postsData.posts, function (post) {
+                    vrqc.postsObject[post.slug]=post;
+                    index.postsById[post.id]=post.slug;
+                    index.postsBySlug[post.slug]=post.id;
+                    if (!index.postsByCategory[post.categories[0].slug]) {
+                        index.postsByCategory[post.categories[0].slug] = [post.id];
+                        nav.categories.push(post.categories[0].slug);
+                    } else {
+                        index.postsByCategory[post.categories[0].slug].push(post.id);
+                    }
+                })
+
             }).error(function (data, status, headers, config) {
                 //console.log('sucks');
             });
