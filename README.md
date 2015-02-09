@@ -44,11 +44,12 @@ When exporting this theme to a new database, be sure to update the theme files w
         update_post_meta($this->id,$metakey, $metavalue);
     }
 
-###### add to easyReservations_form_shortcode.php ~line 270
+###### add first block to easyReservations_form_shortcode.php ~line 270 and the second line to easyReservations_calendar_shortcode.php ~line 11
 
     $slug = get_post( $post )->post_name;
     $propertyID = get_post_id( $slug, 'easy-rooms' );
     $theForm=str_replace('['.$fields.']', '<select name="easyroom" style="'.$style.'" id="form_room" '.$disabled.' onchange="'.$price_action.$validate_action.'">'.easyreservations_resource_options($propertyID, 0).'</select>', $theForm);
 
+    'resource' => easyreservations_resource_options($propertyID, 0),
 
 *Custom fields might not be visible on post editing, check that Screen Options is enabled.*

@@ -8,11 +8,17 @@ app = angular.module('vrqc', []);
     console.log(AppAPI.url);
 });*/
 app.controller('vrqcPropCtrl', function($scope, data){
-        $scope.vrqc = data;
+    $scope.vrqc = data[0];
+    $scope.nav = data[1];
+    $scope.index = data[2];
+    $scope.show = {rooms:0};
+
+    $scope.getTheId = data[0].propertySlug;
 
 }).factory('data', function($http, $timeout, $location){
-    var vrqc = {propertiesData:{},propertiesObject:{},postsData:{},postData:{},offersData:{},weather:{}};
-
+    var vrqc = {propertiesData:{},propertiesObject:{},propertiesById:{},propertyPostsBySlug:{},postsData:{},postData:{},offersData:{},weather:{}};
+    var nav = {properties: ['All', '1 BR', '2 BR', '3 BR', '4+ BR']};
+    var index = {propertiesById:{},propertiesBySlug:{},propertyPostsById:{},propertyPostsBySlug:{}};
     $timeout(function(){
         /*$http({
          method: 'GET',
@@ -32,6 +38,8 @@ app.controller('vrqcPropCtrl', function($scope, data){
                 vrqc.propertiesData = data;
                 angular.forEach(vrqc.propertiesData.posts, function(property){
                     vrqc.propertiesObject[property.slug]=property;
+                    index.propertiesById[property.id]=property.slug;
+                    index.propertiesBySlug[property.slug]=property.id;
 
                     //console.log('property.custom_fields', property.custom_fields);
                     $http.get('http://localhost/vrqc/api/get_post/?slug='+property.slug).success(function(data){
@@ -127,8 +135,14 @@ app.controller('vrqcPropCtrl', function($scope, data){
         // Property Posts
         $http.get('http://localhost/vrqc/?json=get_posts&cat=7')
             .success(function (data, status, headers, config) {
-                //console.log('propertyPosts',data);
+                // console.log('propertyPosts',data);
                 vrqc.propertyPosts = data;
+                if(vrqc.propertyPosts.posts){
+                    angular.forEach(vrqc.propertyPosts.posts, function (post) {
+                        index.propertyPostsBySlug[post.slug]=post.id;
+                        index.propertyPostsById[post.id]=post.slug;
+                    });
+                }
             }).error(function (data, status, headers, config) {
                 //console.log('sucks');
             });
@@ -146,7 +160,24 @@ app.controller('vrqcPropCtrl', function($scope, data){
         return $sce.trustAsHtml(encodeURI(string));
     };
 
-    return vrqc;
+    vrqc.propertySlug = function(id) {
+        console.log(id);
+        var slug = '';
+        $timeout(function () {
+            angular.forEach(vrqc.propertyPosts.posts, function(property){
+                if (property.id == id) {
+                    console.log('id',property.id);
+                    slug = property.slug;
+                    console.log('slug',slug);
+                    return slug;
+                }
+            });
+
+        },6000);
+
+    };
+
+    return [vrqc, nav, index];
 
     /*        $scope.propertyID = function(properties, url) {
      $timeout(function(url){
