@@ -20,8 +20,6 @@
             <div class="col-xs-12 btn-group btn-group-justified">
                 <a ng-repeat="(key,section) in nav.properties" ng-click="$parent.show.rooms={}; $parent.show.rooms=key" type="button" class="btn btn-default">{{section}}</a>
             </div>
-            <div class="col-xs-12">Choose property by room count.</div>
-
             <hr class="col-xs-12"/>
             <?php
             // get all the properties category
@@ -54,7 +52,7 @@
             <hr/>
         </section>
         <section>
-            <h3>Post Filtering</h3>
+            <h3>Blog Entries</h3>
             <?php
             // get all the categories from the database except test, offrs, and properties
             $args = array('exclude'=> '1, 2, 5, 7');
