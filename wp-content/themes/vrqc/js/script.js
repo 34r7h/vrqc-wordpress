@@ -59,7 +59,7 @@ app.controller('vrqcPropCtrl', function($scope, data){
                         // Creates a new post from a new resource
                             if( status === 'error' ) {
                                 var custom = '';
-                                var propertyProperties = ['type','meals','amenities','suitability','sleeps','bathrooms','entertainment','kitchen','address'];
+                                var propertyProperties = ['type','meals','amenities','suitability','sleeps','bathrooms','entertainment','kitchen','address', 'rate-info','off-peak-night', 'off-peak-week','peak-night', 'peak-week'];
                                 angular.forEach(property.custom_fields, function(value,field){
                                     custom = custom + '&custom['+field+']='+encodeURI(value);
                                 });
@@ -74,8 +74,8 @@ app.controller('vrqcPropCtrl', function($scope, data){
                                 if (!index.propertyPostsBySlug[property.slug]) {
                                     $http.get(createPostUrl)
                                         .success(function (data, status, headers, config) {
-                                            console.log('newpost', data);
                                         }).error(function (data, status, headers, config) {
+                                            console.log('post not created');
                                     });
                                 }
                             }/* else if(status === 'ok' && property.custom_fields != post.custom_fields){
@@ -134,9 +134,7 @@ app.controller('vrqcPropCtrl', function($scope, data){
                     vrqc.propertyData = vrqc.propertiesObject[data.post.slug];
                     $timeout(function(){
                         vrqc.propertyDataId = vrqc.propertyData['id'];
-                        vrqc.propertyAddress = vrqc.propertyData['custom_fields'].address;
-                        console.log('vrqc.propertyAddress', vrqc.propertyAddress);
-                    },0)
+                    },0);
                 }
             }).error(function (data, status, headers, config) {
                 //console.log('sucks');
@@ -162,6 +160,15 @@ app.controller('vrqcPropCtrl', function($scope, data){
 
     vrqc.encode = function(string){
         return $sce.trustAsHtml(encodeURI(string));
+    };
+
+    vrqc.trust = function(str){
+        var encodedStr = encodeURI(str);
+        return $sce.trustAsResourceUrl(encodedStr);
+    };
+
+    vrqc.addToArray = function (arr, item) {
+        return arr.push(item)
     };
 
     vrqc.propertySlug = function(id) {

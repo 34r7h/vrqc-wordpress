@@ -24,13 +24,16 @@ The following code can be used in any controller ($scope), directive (scope), or
             console.log('Sorry, no data from posts.');
     });
 
+##Plugins Abused
+[Easy Reservations] (https://wordpress.org/plugins/easyreservations/)
+[Attachments] (https://wordpress.org/plugins/attachments/)
+[JSON API] (https://wordpress.org/plugins/json-api/)
+
+
 ##### // TODO
-* Main data -> custom data for properties
-* Masonry http://w3bits.com/css-masonry/
 * Update README with all the `possibilities`!
 * Garbage collection when resources are removed, etc
 * Style reservation workflow
-* Weather icons
 * Payment
 * Localization
 

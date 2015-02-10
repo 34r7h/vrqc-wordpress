@@ -58,7 +58,7 @@ img {border-radius:5px; width:100%; height:auto;}
     top: -72px;
 }*/
 
-.camera_wrap img, .post img, .property img {
+.camera_wrap img, .post img, .property  .property-featured img {
   width:100%;
     height: auto;
 }
@@ -109,3 +109,5 @@ height: 0;
 
 
 }
+.smallpad {padding:.1em!important;}
+.nopad {padding:0!important}
