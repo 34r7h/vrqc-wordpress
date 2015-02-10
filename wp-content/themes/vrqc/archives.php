@@ -29,9 +29,6 @@ get_header(); ?>
     </div><!-- #content -->
 </div><!-- #container -->
 
-<div class="col-xs-12 col-sm-4">
-    <?php get_search_form(); ?>
-    <?php get_sidebar(); ?>
-</div>
+
 <hr class="col-xs-12"/>
 <?php get_footer(); ?>

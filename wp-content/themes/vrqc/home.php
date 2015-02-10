@@ -3,14 +3,13 @@
     <div class='clearfix post-group col-xs-11 col-xs-push-1'>
         <div ng-init="show.category='all';" class="btn-group btn-group-justified">
             <a ng-click="show.category='all';" type="button" class="btn btn-default">All Categories</a>
-            <a ng-repeat="category in nav.categories" ng-click="$parent.show.category=category" type="button" class="btn btn-default">{{category}}</a>
+            <a ng-repeat="category in nav.categories" ng-href="/category/{{category}}" ng-click="$parent.show.category=category" type="button" class="btn btn-default">{{category}}</a>
         </div>
         <hr/>
     <?php
             // get all the categories from the database
             $args = array('exclude'=> '1, 2, 5, 7');
             $cats = get_categories($args);
-
             foreach ($cats as $cat) {
                 $cat_id= $cat->term_id;
                 $cat_slug = $cat->slug;
@@ -28,7 +27,6 @@
                 <?php endwhile; endif; // done our wordpress loop. Will start again for each category ?>
                 </div>
             <?php } // done the foreach statement ?>
-
         </div>
     </div>
 <?php get_footer(); ?>
