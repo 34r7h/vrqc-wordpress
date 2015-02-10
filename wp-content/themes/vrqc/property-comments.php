@@ -21,7 +21,7 @@ endforeach;
         ),
         'title_reply'=>'Write a Review',
         'label_submit'=> 'Submit this Review',
-        'comment_field'=>'<p class="comment-form-comment"><textarea class="col-xs-12 col-sm-7 pull-left" id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>',
+        'comment_field'=>'<p class="comment-form-comment"><textarea class="col-xs-12 col-sm-7 pull-left" id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="Describe your stay with us."></textarea></p>',
         'comment_notes_after'=>'<div class="col-xs-12 col-sm-5"><p>Thank you for taking the time to rate your stay with us.</p>',
         'comment_form_after'=>'</div>'
 );
