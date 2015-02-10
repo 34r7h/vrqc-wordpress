@@ -36,6 +36,7 @@ The following code can be used in any controller ($scope), directive (scope), or
 * Style reservation workflow
 * Payment
 * Localization
+* footer (menu, trust)
 
 ***
 When exporting this theme to a new database, be sure to update the theme files with appropriate category ids
