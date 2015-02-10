@@ -128,6 +128,8 @@
                 </div>
                 <div ng-show="show.propertySection ==='Overview' || show.propertySection ==='Reviews'" class="col-xs-12 well">
                     <h2>Reviews</h2>
+                    <?php comments_template('/property-comments.php'); ?>
+
                 </div>
 
             </div>
