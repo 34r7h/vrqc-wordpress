@@ -1,12 +1,5 @@
 app = angular.module('vrqc', []);
-/*app.run(function($rootScope){
-    console.log('BlogInfo',BlogInfo);
-    $rootScope.dir = BlogInfo.url;
-    $rootScope.site = BlogInfo.site;
-    $rootScope.api = AppAPI.url;
-    console.log(BlogInfo.site);
-    console.log(AppAPI.url);
-});*/
+
 app.controller('vrqcPropCtrl', function($scope, data){
     $scope.vrqc = data[0];
     $scope.nav = data[1];
@@ -15,87 +8,97 @@ app.controller('vrqcPropCtrl', function($scope, data){
 
     $scope.getTheId = data[0].propertySlug;
 
-}).factory('data', function($http, $timeout, $location){
-    var vrqc = {propertiesData:{},propertiesObject:{},propertiesById:{},propertyPostsBySlug:{},postsData:{},postsObject:{},postData:{},offersData:{},weather:{}};
+}).factory('data', function($http, $timeout, $location, $sce){
+    var vrqc = {propertiesData:{}, propertiesObject:{}, postsData:{}, postsObject:{}, postData:{}, offersData:{}, weather:{}};
     var nav = {property: ['Overview','Rates','Location','Photos','Reviews'],properties: ['All', '1 BR', '2 BR', '3 BR', '4+ BR'], categories:[]};
     var index = {postsById:{}, postsBySlug:{}, postsByCategory:{}, propertiesById:{},propertiesBySlug:{},propertyPostsById:{},propertyPostsBySlug:{}};
     $timeout(function(){
-        /*$http({
-         method: 'GET',
-         url: 'http://localhost/vrqc/',
-         params: {
-         json: 'get_posts'
 
-         }
-         }).success(function (data, status, headers, config) {
-         console.log(data);
-         $scope.postsData=data;
-         }).error(function (data, status, headers, config) {
-         });*/
+        // Property Posts
+        $http.get('http://localhost/vrqc/?json=get_posts&cat=7')
+            .success(function (data, status, headers, config) {
+                vrqc.propertyPosts = data;
+                if(vrqc.propertyPosts.posts){
+                    angular.forEach(vrqc.propertyPosts.posts, function (post) {
+                        index.propertyPostsBySlug[post.slug]=post.id;
+                        index.propertyPostsById[post.id]=post.slug;
+                    });
+                }
+            }).error(function (data, status, headers, config) {
+        });
+
+        // Property Resources
         $http.get('http://localhost/vrqc/api/get_posts/?post_type=easy-rooms')
             .success(function (data, status, headers, config) {
-                //console.log('propertiesData',data);
                 vrqc.propertiesData = data;
                 angular.forEach(vrqc.propertiesData.posts, function(property){
                     vrqc.propertiesObject[property.slug]=property;
                     index.propertiesById[property.id]=property.slug;
                     index.propertiesBySlug[property.slug]=property.id;
 
-                    //console.log('property.custom_fields', property.custom_fields);
                     $http.get('http://localhost/vrqc/api/get_post/?slug='+property.slug).success(function(data){
                         var status = data.status,
                             post = data.post,
                             nonce = '',
                             updateNonce = '';
-                        //console.log('$scope.status',status);
-                        //console.log('$scope.post.custom_fields', post.custom_fields);
 
+                        // Gets create permission key if admin is logged in
                         $http.get('http://localhost/vrqc/?json=core.get_nonce&controller=posts&method=create_post')
                             .success(function(data, status, headers, config){
                                 nonce = data.nonce;
                             }).error(function(data, status, headers, config){
-                                //console.log('nonce', 'sucks');
                             });
+                        // Gets update permission key if admin is logged in
                         $http.get('http://localhost/vrqc/?json=core.get_nonce&controller=posts&method=update_post')
                             .success(function(data, status, headers, config){
                                 updateNonce = data.nonce;
                             }).error(function(data, status, headers, config){
-                                //console.log('nonce', 'sucks');
                             });
-                        if( status === 'error' ) {
-                            $timeout(function(){
+
+                        $timeout(function(){
+                        // Creates a new post from a new resource
+                            if( status === 'error' ) {
                                 var custom = '';
+                                var propertyProperties = ['type','meals','amenities','suitability','sleeps','bathrooms','entertainment','kitchen','address'];
                                 angular.forEach(property.custom_fields, function(value,field){
                                     custom = custom + '&custom['+field+']='+encodeURI(value);
                                 });
+                                angular.forEach(propertyProperties, function(property){
+                                    custom = custom + '&custom['+property+']=';
+                                });
+
                                 var createPostUrl = 'http://localhost/vrqc/?json=create_post&nonce=' + nonce + '&title=' + encodeURI(property.title) + '&categories=properties&status=publish&'+custom;
                                 console.log('createPostUrl', createPostUrl);
-                                $http.get(createPostUrl)
-                                    .success(function (data, status, headers, config) {
-                                        //console.log('newpost', data);
-                                    }).error(function (data, status, headers, config) {
-                                        //console.log('newpost', 'Didn\'t happen.');
+                                console.log('index.propertyPostsBySlug[property.slug]', index.propertyPostsBySlug);
+                                console.log('[property.slug]', property.slug);
+                                if (!index.propertyPostsBySlug[property.slug]) {
+                                    $http.get(createPostUrl)
+                                        .success(function (data, status, headers, config) {
+                                            console.log('newpost', data);
+                                        }).error(function (data, status, headers, config) {
                                     });
-                            },1000);
-                        } else if(status === 'ok' && property.custom_fields != post.custom_fields){
-                            /*console.log('Some custom property fields should copy over to posts..');
+                                }
+                            }/* else if(status === 'ok' && property.custom_fields != post.custom_fields){
+                                console.log('Some custom property fields should copy over to posts..');
 
-                             $timeout(function(){
-                             var custom = '';
-                             angular.forEach(property.custom_fields, function(value,field){
-                             custom = custom + '&custom_field['+field+']='+encodeURI(value);
-                             });
-                             // console.log('custom', custom);
-                             var updatePostUrl = 'http://localhost/vrqc/api/posts/update_post/?slug=' + property.slug + '&nonce=' + updateNonce + custom;
-                             console.log('updatePostUrl', updatePostUrl);
-                             $http.get(updatePostUrl)
-                             .success(function (data, status, headers, config) {
-                             console.log(data);
-                             }).error(function (data, status, headers, config) {
-                             console.log('post.custom_fields', 'Didn\'t happen.');
-                             });
-                             },2000)*/
-                        }
+                                 $timeout(function(){
+                                 var custom = '';
+                                 angular.forEach(property.custom_fields, function(value,field){
+                                 custom = custom + '&custom_field['+field+']='+encodeURI(value);
+                                 });
+                                 // console.log('custom', custom);
+                                 var updatePostUrl = 'http://localhost/vrqc/api/posts/update_post/?slug=' + property.slug + '&nonce=' + updateNonce + custom;
+                                 console.log('updatePostUrl', updatePostUrl);
+                                 $http.get(updatePostUrl)
+                                 .success(function (data, status, headers, config) {
+                                 console.log(data);
+                                 }).error(function (data, status, headers, config) {
+                                 console.log('post.custom_fields', 'Didn\'t happen.');
+                                 });
+                                 },2000)
+                            }*/
+                        },3000);
+
                     });
                 })
             }).error(function (data, status, headers, config) {
@@ -131,6 +134,8 @@ app.controller('vrqcPropCtrl', function($scope, data){
                     vrqc.propertyData = vrqc.propertiesObject[data.post.slug];
                     $timeout(function(){
                         vrqc.propertyDataId = vrqc.propertyData['id'];
+                        vrqc.propertyAddress = vrqc.propertyData['custom_fields'].address;
+                        console.log('vrqc.propertyAddress', vrqc.propertyAddress);
                     },0)
                 }
             }).error(function (data, status, headers, config) {
@@ -144,20 +149,7 @@ app.controller('vrqcPropCtrl', function($scope, data){
             }).error(function (data, status, headers, config) {
                 //console.log('sucks');
             });
-        // Property Posts
-        $http.get('http://localhost/vrqc/?json=get_posts&cat=7')
-            .success(function (data, status, headers, config) {
-                // console.log('propertyPosts',data);
-                vrqc.propertyPosts = data;
-                if(vrqc.propertyPosts.posts){
-                    angular.forEach(vrqc.propertyPosts.posts, function (post) {
-                        index.propertyPostsBySlug[post.slug]=post.id;
-                        index.propertyPostsById[post.id]=post.slug;
-                    });
-                }
-            }).error(function (data, status, headers, config) {
-                //console.log('sucks');
-            });
+
         // Weather API
         $http.get('http://api.wunderground.com/api/d26d4a3f9b087f03/geolookup/conditions/q/Canada/Québec.json')
             .success(function (data, status, headers, config) {
