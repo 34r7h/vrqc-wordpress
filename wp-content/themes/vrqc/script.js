@@ -130,13 +130,15 @@ app.controller('vrqcPropCtrl', function($scope, data){
                 vrqc.offersData = data;
             }).error(function (data, status, headers, config) {
             });
-
-        // Weather API
-        $http.get('http://api.wunderground.com/api/d26d4a3f9b087f03/geolookup/conditions/q/Canada/Québec.json')
-            .success(function (data, status, headers, config) {
-                vrqc.weather = data.current_observation;
-            }).error(function (data, status, headers, config) {
+        $timeout(function(){
+            $http.get('http://api.wunderground.com/api/d26d4a3f9b087f03/geolookup/conditions/q/Canada/Québec.json')
+                .success(function (data, status, headers, config) {
+                    vrqc.weather = data.current_observation;
+                }).error(function (data, status, headers, config) {
             });
+        },6000);
+        // Weather API
+
     },0);
 
     vrqc.encode = function(string){

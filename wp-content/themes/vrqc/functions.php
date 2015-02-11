@@ -22,32 +22,32 @@ function vrqc_enqueue_angular() {
     wp_enqueue_script( 'angular-core' );
 
     wp_localize_script( 'angular-core', 'AppAPI', array( 'url' => get_bloginfo('wpurl').'/?json=1') );
-    wp_localize_script( 'angular-core', 'BlogInfo', array( 'url' => get_bloginfo('template_directory').'/?json=1', 'site' => get_bloginfo('wpurl')) );
+wp_localize_script( 'angular-core', 'BlogInfo', array( 'url' => get_bloginfo('template_directory').'/?json=1', 'site' => get_bloginfo('wpurl')) );
 }
 add_action('wp_head', 'vrqc_enqueue_angular');
 add_action('wp_head', 'vrqc_enqueue_header');
 
 
 register_nav_menus( array(
-	'main_menu' => 'Main Menu',
-	'footer_menu' => 'Footer Menu',
+'main_menu' => 'Main Menu',
+'footer_menu' => 'Footer Menu',
 ));
 
 function my_wp_nav_menu_args( $args = '' ) {
-	$args['container'] = false;
-	return $args;
+$args['container'] = false;
+return $args;
 }
 add_filter( 'wp_nav_menu_args', 'my_wp_nav_menu_args' );
 add_filter('widget_text', 'do_shortcode');
 
 
-add_theme_support( 'custom-header' );
 
 function featuredSupport() {
+add_theme_support( 'custom-header' );
 add_theme_support( 'post-thumbnails' );
 add_theme_support( 'automatic-feed-links' );
 add_theme_support( 'title-tag' );
-add_theme_support( 'custom-background' );
+
 
 }
 add_action( 'after_setup_theme', 'featuredSupport' );
@@ -56,30 +56,30 @@ add_action( 'after_setup_theme', 'featuredSupport' );
 // Register Sidebars
 function main_sidebar() {
 
-    $args = array(
-    'id'            => 'sidebar-aside',
-    'name'          => __( 'Primary Widget Area', 'text_domain' ),
-    'description'   => __( 'Aside Widgets.', 'text_domain' ),
-    'before_title'  => '<h3>',
-        'after_title'   => '</h3>',
-    'before_widget' => '<aside id="%1$s" class="col-xs-12 widget %2$s">',
-        'after_widget'  => '</aside>',
-    );
-    register_sidebar( $args );
+$args = array(
+'id'            => 'sidebar-aside',
+'name'          => __( 'Primary Widget Area', 'text_domain' ),
+'description'   => __( 'Aside Widgets.', 'text_domain' ),
+'before_title'  => '<h3>',
+    'after_title'   => '</h3>',
+'before_widget' => '<aside id="%1$s" class="col-xs-12 widget %2$s">',
+    'after_widget'  => '</aside>',
+);
+register_sidebar( $args );
 
 }
 function property_sidebar() {
 
-    $args = array(
-    'id'            => 'sidebar-property',
-    'name'          => __( 'Property Widget Area', 'text_domain' ),
-    'description'   => __( 'Property Widgets.', 'text_domain' ),
-    'before_title'  => '<h3>',
-        'after_title'   => '</h3>',
-    'before_widget' => '<aside id="%1$s" class="col-xs-12 widget %2$s">',
-        'after_widget'  => '</aside>',
-    );
-    register_sidebar( $args );
+$args = array(
+'id'            => 'sidebar-property',
+'name'          => __( 'Property Widget Area', 'text_domain' ),
+'description'   => __( 'Property Widgets.', 'text_domain' ),
+'before_title'  => '<h3>',
+    'after_title'   => '</h3>',
+'before_widget' => '<aside id="%1$s" class="col-xs-12 widget %2$s">',
+    'after_widget'  => '</aside>',
+);
+register_sidebar( $args );
 
 }
 
@@ -117,14 +117,14 @@ add_filter('widget_text', 'do_shortcode');
 
 // Get id from post title
 function get_post_id( $slug, $post_type ) {
-    $query = new WP_Query(
-        array(
-            'name' => $slug,
-            'post_type' => $post_type
-        )
-    );
-    $query->the_post();
-    return get_the_ID();
+$query = new WP_Query(
+array(
+'name' => $slug,
+'post_type' => $post_type
+)
+);
+$query->the_post();
+return get_the_ID();
 }
 
 global $post;

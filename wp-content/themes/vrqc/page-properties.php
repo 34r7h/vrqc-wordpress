@@ -17,7 +17,7 @@
             query_posts("cat=$cat_id&posts_per_page=5");
 
             if (have_posts()) : while (have_posts()) : the_post(); ?>
-            <article ng-show='(show.rooms == 0 || show.rooms == vrqc.propertiesObject[index.propertyPostsById[id[<?php echo the_ID(); ?>]]].custom_fields.roomcount[0])' ng-init="id[<?php echo the_ID(); ?>] = '<?php echo the_ID(); ?>';" class="clearfix panel-body col-xs-12 col-sm-6">
+            <article ng-show='(show.rooms == 0 || show.rooms == vrqc.propertiesObject[index.propertyPostsById[id[<?php echo the_ID(); ?>]]].custom_fields.roomcount[0])' ng-init="id[<?php echo the_ID(); ?>] = '<?php echo the_ID(); ?>';" class="clearfix panel-body col-xs-12 col-sm-6 property-list">
                 <div class="panel panel-default">
                     <a href="<?php the_permalink();?>">
                         <div class="panel panel-heading">
@@ -25,6 +25,25 @@
                         </div>
                         <div class="frontpage-post panel-body">
                             <?php echo get_the_post_thumbnail() ?>
+                            <hr/>
+                            <div class="col-xs-12 well">
+                                <div class="table-responsive"><table class="table">
+                                    <tr><th>Rooms</th><th>Sleeps</th><th>Bathrooms</th></tr>
+                                    <tr>
+                                        <td>
+                                            <?php $meta = get_post_meta( get_the_ID(), 'roomcount' ); echo $meta[0] ?>
+                                        </td>
+
+                                        <td>
+                                            <?php $meta = get_post_meta( get_the_ID(), 'sleeps' ); echo $meta[0] ?>
+                                        </td>
+                                        <td>
+                                            <?php $meta = get_post_meta( get_the_ID(), 'bathrooms' ); echo $meta[0] ?>
+                                        </td>
+                                    </tr>
+
+                                </table></div>
+                            </div>
                             <p><?php the_content('More'); ?></p>
                         </div>
                         <div class="panel-footer">

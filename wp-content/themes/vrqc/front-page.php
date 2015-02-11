@@ -38,10 +38,28 @@
                     <div class="col-xs-12 col-sm-5 frontpage-post">
                         <?php echo get_the_post_thumbnail() ?>
                     </div>
-                    <div class="col-xs-12 col-sm-7">
+                    <span>
                         <h4><i class="fa fa-home"> <?php the_title(); ?></i></h4>
+                            <div class="table-responsive"><table class="table">
+                                <tr><th>Rooms</th><th>Sleeps</th><th>Bathrooms</th></tr>
+                                <tr>
+                                    <td>
+                                        <?php $meta = get_post_meta( get_the_ID(), 'roomcount' ); echo $meta[0] ?>
+                                    </td>
+
+                                    <td>
+                                        <?php $meta = get_post_meta( get_the_ID(), 'sleeps' ); echo $meta[0] ?>
+                                    </td>
+                                    <td>
+                                        <?php $meta = get_post_meta( get_the_ID(), 'bathrooms' ); echo $meta[0] ?>
+                                    </td>
+                                </tr>
+
+                            </table>
+                                </div>
+                        </hr>
                         <p><?php the_content('More'); ?></p>
-                    </div>
+                    </span>
                 </a>
                 <hr class="col-xs-12"/>
             </article>
@@ -51,45 +69,11 @@
         </div>
             <hr/>
         </section>
-        <section>
-            <h3>Blog Entries</h3>
-            <?php
-            // get all the categories from the database except test, offrs, and properties
-            $args = array('exclude'=> '1, 2, 5, 7');
-            $cats = get_categories($args);
 
-            foreach ($cats as $cat) {
-            echo "<div class='clearfix post-group col-sm-4'><div class='panel panel-default'>";
-            $cat_id= $cat->term_id;
-            echo "<h2 class='panel-heading'>".$cat->name."</h2>";
-            query_posts("cat=$cat_id&posts_per_page=1");
-
-            if (have_posts()) : while (have_posts()) : the_post(); ?>
-
-            <article class="panel-body">
-                <a href="<?php the_permalink();?>">
-                    <div class="frontpage-post">
-                        <?php echo get_the_post_thumbnail() ?>
-                    </div>
-                    <div>
-                        <h4><i class="fa fa-thumb-tack"> <?php the_title(); ?></i></h4>
-                    </div>
-                </a>
-                <hr/>
-            </article>
-        </div>
-
-            <?php endwhile; endif; // done our wordpress loop. Will start again for each category ?>
-            <?php echo "</div>"; ?>
-            <?php } // done the foreach statement ?>
-            <?php wp_reset_query(); ?>
-
-        </div>
-        </section>
     </div>
     <aside class="col-xs-12 col-sm-3 col-md-4 col-lg-5">
         <section>
-            <h3>Reviews</h3>
+
             <?php
             // Posts per page setting
             $ppp = 3; // either use the WordPress global Posts per page setting or set a custom one like $ppp = 10;
@@ -111,9 +95,10 @@
             $comments_list = $wpdb->get_results( $sql );
             if ( count( $comments_list ) > 0 ) {
             $date_format = get_option( 'date_format' );
-            echo '<div class="well">';
+            echo '<div class="well"><h3>Reviews</h3>
+            <hr/>';
             foreach ( $comments_list as $comment ) {
-            echo '<article><button disabled class="col-xs-2 col-sm-3 fa fa-user fa-3x text-center"> </button> <b class="col-xs-10 col-sm-9">'.substr( $comment->comment_content, 0, 250 ).'..</b><br />'.date( $date_format, strtotime( $comment->comment_date ) ).' | <a href="'.get_permalink( $comment->comment_post_ID ).'">'.get_the_title( $comment->comment_post_ID ).'</a>
+            echo '<article><i disabled class="col-xs-2 col-sm-3 fa fa-user fa-3x text-center"> </i> <b>'.substr( $comment->comment_content, 0, 250 ).'..</b><br />'.date( $date_format, strtotime( $comment->comment_date ) ).' | <a href="'.get_permalink( $comment->comment_post_ID ).'">'.get_the_title( $comment->comment_post_ID ).'</a>
                 <hr/></article>';
             }
             echo '</div>';
@@ -131,6 +116,41 @@
             <a href="<?php the_permalink() ?>"><?php echo get_the_post_thumbnail() ?></a>
             <?php endwhile; endif; ?>
             <?php wp_reset_query(); ?>
+        </section>
+        <section>
+            <h3>Blog Entries</h3>
+            <?php
+            // get all the categories from the database except test, offrs, and properties
+            $args = array('exclude'=> '1, 2, 5, 7');
+            $cats = get_categories($args);
+
+            foreach ($cats as $cat) {
+            echo "<div class='clearfix post-group'>";
+            $cat_id= $cat->term_id;
+            echo "<a href='" .get_site_url() ."/category/" . $cat->slug . "'><h2 class='panel-heading'>".$cat->name."</h2></a>";
+            query_posts("cat=$cat_id&posts_per_page=1");
+
+            if (have_posts()) : while (have_posts()) : the_post(); ?>
+            <div class='panel panel-default'>
+                <article class="panel-body">
+                    <a href="<?php the_permalink();?>">
+                        <div>
+                            <h4><i class="fa fa-thumb-tack"> <?php the_title(); ?></i></h4>
+                        </div>
+                        <div class="frontpage-post">
+                            <?php echo get_the_post_thumbnail() ?>
+                        </div>
+
+                    </a>
+                </article>
+            </div>
+
+            <?php endwhile; endif; // done our wordpress loop. Will start again for each category ?>
+            <?php echo "</div>"; ?>
+            <?php } // done the foreach statement ?>
+            <?php wp_reset_query(); ?>
+
+        </div>
         </section>
     </aside>
 </div>

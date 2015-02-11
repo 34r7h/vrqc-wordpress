@@ -23,7 +23,7 @@
         <span class="hidden-xs pull-right weather">Current weather: <b>{{vrqc.weather.weather}}</b> Temp: <b>{{vrqc.weather.temperature_string}}</b></span>
         <hr/>
     </div>
-    <div class="col-sm-5 col-md-7 col-xs-12 brand">
+    <div class="col-sm-7 col-md-6 col-xs-12 brand">
         <a class="col-xs-9 col-sm-12" href="<?php echo get_site_url(); ?>">
             <img class="col-xs-4 pull-left" src="<?php echo( get_header_image() ); ?>" alt="<?php echo( get_bloginfo( 'title' ) ); ?>" /><span><h1>Vacation Rentals Quebec City</h1></span>
         </a>
@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <div class="col-xs-12 col-sm-7 col-md-5 pull-right">
+    <div class="col-xs-12 col-sm-5 col-md-6 pull-right">
         <div class="featured-offer">
             <?php
                 $cat_id = 5; //the certain category ID

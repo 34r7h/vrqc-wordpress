@@ -1,4 +1,8 @@
 <div class="clearfix">
+    <?php get_header(); ?>
+</div>
+<hr/>
+<div class="clearfix">
     <article class="col-xs-6 col-sm-7 col-sm-offset-1 property">
         <div class="panel panel-default">
             <h1 class="panel-heading">
@@ -41,9 +45,10 @@
                 </div>
                 <div ng-show="show.propertySection ==='Overview'" class="col-xs-12 well">
                     <h2>Overview</h2>
+                    <hr/>
                     <?php echo the_content(); ?>
                     <hr/>
-                    <h4>Property Type</h4>
+                    <h4>Property Type</h4>hr
                     <?php $meta = get_post_meta( get_the_ID(), 'type' ); echo $meta[0] ?>
                     <hr/>
                     <h4>Meals</h4>
@@ -63,6 +68,7 @@
                 </div>
                 <div ng-show="show.propertySection ==='Overview' || show.propertySection ==='Rates'" class="col-xs-12 well">
                     <h2>Rates</h2>
+                    <hr/>
                     <p>Peak season runs Apr 1 - Nov 1</p>
                     <div class="table-responsive">
                         <table class="table">
@@ -97,6 +103,7 @@
                 </div>
                 <div ng-show="show.propertySection ==='Overview' || show.propertySection ==='Location'" ng-init="loc.address='779+Côte+de+la+Citadelle,+Quebec+City,+QC,+Canada'; loc.src = $sce.trustAsHtml('http://www.google.com/maps/embed/v1/place?q='+ loc.address +'&key=AIzaSyBOX888m2mY9tbI1PgtJcgGvb7KsjTxTzE')" class="col-xs-12 well ">
                     <h2>Location</h2>
+                    <hr/>
                     <div ng-if="vrqc.postData.post.custom_fields.address[0]" ng-init="mapSrc = vrqc.trust('https://www.google.com/maps/embed/v1/place?q=' + vrqc.postData.post.custom_fields.address[0] + '&key=AIzaSyBOX888m2mY9tbI1PgtJcgGvb7KsjTxTzE')" class="google-maps">
                         <iframe width="600" height="450" frameborder="0" style="border:0" ng-src="{{mapSrc}}"></iframe>
                     </div>                      <!--<iframe
@@ -119,6 +126,7 @@
                     </div>
                     <?php endif; ?>
                     <h2>Photos</h2>
+                    <hr/>
                     <div ng-repeat="img in imageList track by $index">
                         <img ng-show="$parent.gallery[$index]" ng-src="{{img.url}}" alt="{{img.alt}}" ng-style="fullSize={width:'100%',padding:'.5em 0'}" ng-click="$parent.gallery[$index]=!$parent.gallery[$index];"/>
                         <img ng-show="!$parent.gallery[$index]" ng-src="{{img.url}}" alt="{{img.alt}}" class="col-xs-3 smallpad" ng-click="$parent.gallery = {}; $parent.gallery[$index]=!$parent.gallery[$index];"/>
@@ -128,6 +136,7 @@
                 </div>
                 <div ng-show="show.propertySection ==='Overview' || show.propertySection ==='Reviews'" class="col-xs-12 well">
                     <h2>Reviews</h2>
+                    <hr/>
                     <?php comments_template('/property-comments.php'); ?>
 
                 </div>
@@ -140,3 +149,7 @@
     </aside>
 </div>
 <hr/>
+<div class="clearfix">
+    <?php get_footer(); ?>
+</div>
+

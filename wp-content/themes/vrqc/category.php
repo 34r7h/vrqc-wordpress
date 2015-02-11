@@ -2,9 +2,9 @@
 <h1><?php single_cat_title(); ?></h1>
 <section class="col-sm-8"><?php
 while ( have_posts() ) : the_post();
-    echo '<a class="col-xs-12 col-sm-6" href="'. get_permalink() .'"><div class="panel panel-default">';
-    echo '<div class="col-xs-6 panel-heading">'.get_the_post_thumbnail().'</div>';
-    echo '<div class="col-xs-6 panel-body"><h3>'.the_title().'</h3></div>';
+    echo '<a class="col-xs-12 col-sm-6" href="'. get_permalink() .'"><div class="panel panel-default post-list"><h5 class="panel-heading"><i class="fa fa-thumb-tack"></i> ';
+    echo the_title().'</h5>';
+    echo '<div class="panel-body">'.get_the_post_thumbnail().'</div>';
     echo '</div></a>';
 endwhile;
 
