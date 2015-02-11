@@ -43,6 +43,15 @@ a:hover {
 }
 
 img {border-radius:5px; width:100%; height:auto;}
+button {box-shadow:4px 4px 5px rgba(5,8,13,.1);}
+button:hover {box-shadow:3px 3px 4px rgba(5,8,13,.14);}
+.btn-default {background-color: #337ab7; color:rgba(242,247,250,.98); font-weight: bold}
+.featured-offer {box-shadow:5px 5px 5px rgba(5,8,13,.08)}
+.panel-default {box-shadow:2px 2px 3px rgba(5,8,13,.15)}
+.well {box-shadow:3px 3px 4px rgba(5,8,13,.1) inset}
+.wp-post-image {box-shadow:1px 1px 2px rgba(5,8,13,.2)}
+
+
 .property-featured img {border-radius: 0}
 
 .brand h1 {font-size: 1.4em}
@@ -78,7 +87,7 @@ img {border-radius:5px; width:100%; height:auto;}
 
 html {
     margin: 1.618%;
-    background: url("http://localhost/vrqc/wp-content/uploads/2015/01/background-lightmotionblur.jpg") fixed;
+    background: url("/uploads/2015/01/background-lightmotionblur.jpg") fixed;
 }
 
 body {
@@ -87,6 +96,12 @@ body {
 }
 
 .header-info h1 {padding:0; margin:0; font-size: 1.618em}
+
+footer li {
+    list-style: none;
+    padding: .5em .5em .5em 0;
+
+}
 .post-group {}
 .property {}
 

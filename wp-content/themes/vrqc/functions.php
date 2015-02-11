@@ -18,7 +18,7 @@ function vrqc_enqueue_header() {
 
 function vrqc_enqueue_angular() {
     wp_enqueue_script( 'angularjs', 'https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.10/angular.js', array(), null, false );
-    wp_enqueue_script( 'vrqc-script', get_template_directory_uri(). '/js/script.js', array('angularjs'), null, false );
+    wp_enqueue_script( 'vrqc-script', get_template_directory_uri(). '/script.js', array('angularjs'), null, false );
     wp_enqueue_script( 'angular-core' );
 
     wp_localize_script( 'angular-core', 'AppAPI', array( 'url' => get_bloginfo('wpurl').'/?json=1') );

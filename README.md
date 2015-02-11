@@ -16,7 +16,7 @@
 ##Basic API Request
 The following code can be used in any controller ($scope), directive (scope), or service (what.ever).
 
-    $http.get('http://localhost/vrqc/api/get_posts')
+    $http.get($rootScope.siteUrl+'/api/get_posts')
         .success(function (data, status, headers, config) {
             console.log('propertyPosts',data);
             $scope.vrqc.posts = data;
@@ -31,14 +31,15 @@ The following code can be used in any controller ($scope), directive (scope), or
 
 [JSON API] (https://wordpress.org/plugins/json-api/)
 
+Askimet
 
-## // TODO
+
+##Todo
 * Update README with all the `possibilities`!
 * Garbage collection when resources are removed, etc
 * Style reservation workflow
 * Payment
 * Localization
-* footer (menu, trust)
 * colouring
 
 ***

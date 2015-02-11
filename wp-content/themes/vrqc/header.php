@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" ng-app="vrqc">
+<html lang="en" ng-app="vrqc" ng-init="$root.siteUrl = '<?php echo get_site_url(); ?>'">
 <head>
     <title><?php wp_title( '|', true, 'right' ); ?></title>
     <meta charset="utf-8">
@@ -15,10 +15,10 @@
 <body ng-controller="vrqcPropCtrl">
 <!--==============================header=================================-->
 <header class="clearfix">
-    <div>
+    <div class="col-xs-12">
         <a href="tel:15817776339"><button class="btn btn-default "><i class="fa fa-phone"> <span class="hidden-xs">(581) 777-6339</span></i></button></a>
         <a href="mailto:quebeccityreservations@gmail.com"><button class="btn btn-default "><i class="fa fa-envelope"> <span class="hidden-xs">Email</span></i></button></a>
-        <a href="facebook.com"><button class="btn btn-default "><i class="fa fa-facebook-official"> <span class="hidden-xs">Facebook</span></i></button></a>
+        <a target="new" href="https://www.facebook.com/pages/Vacation-Rentals-Quebec-City/188400344615871"><button class="btn btn-default "><i class="fa fa-facebook-official"> <span class="hidden-xs">Facebook</span></i></button></a>
         <a href=""><button class="btn btn-default pull-right"><i class="fa fa-language"> Le French?</i></button></a>
         <span class="hidden-xs pull-right weather">Current weather: <b>{{vrqc.weather.weather}}</b> Temp: <b>{{vrqc.weather.temperature_string}}</b></span>
         <hr/>

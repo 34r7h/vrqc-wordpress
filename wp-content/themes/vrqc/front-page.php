@@ -89,11 +89,6 @@
     </div>
     <aside class="col-xs-12 col-sm-3 col-md-4 col-lg-5">
         <section>
-            <h3>Follow us</h3>
-            <p>Stay abreast of Quebec City's finest info</p>
-            <input type="text"/><button>Subscribe</button>
-        </section>
-        <section>
             <h3>Reviews</h3>
             <?php
             // Posts per page setting
@@ -118,7 +113,7 @@
             $date_format = get_option( 'date_format' );
             echo '<div class="well">';
             foreach ( $comments_list as $comment ) {
-            echo '<article><i class="col-xs-2 col-sm-3 fa fa-user fa-3x text-center"> </i> <b class="col-xs-10 col-sm-9">'.substr( $comment->comment_content, 0, 50 ).'</b><br />'.date( $date_format, strtotime( $comment->comment_date ) ).' | <a href="'.get_permalink( $comment->comment_post_ID ).'">'.get_the_title( $comment->comment_post_ID ).'</a>
+            echo '<article><button disabled class="col-xs-2 col-sm-3 fa fa-user fa-3x text-center"> </button> <b class="col-xs-10 col-sm-9">'.substr( $comment->comment_content, 0, 250 ).'..</b><br />'.date( $date_format, strtotime( $comment->comment_date ) ).' | <a href="'.get_permalink( $comment->comment_post_ID ).'">'.get_the_title( $comment->comment_post_ID ).'</a>
                 <hr/></article>';
             }
             echo '</div>';
