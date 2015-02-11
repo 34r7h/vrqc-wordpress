@@ -16,7 +16,7 @@
 
         <section class="panel panel-default">
 
-            <h3 href class="panel-heading"><a>Our Vacation Rentals</a></h3>
+            <h3 href class="panel-heading"><a href="<?php $propertyLink=get_site_url().'/properties'; echo $propertyLink ?>">Our Vacation Rentals</a></h3>
             <div class="col-xs-12 btn-group btn-group-justified">
                 <a ng-repeat="(key,section) in nav.properties" ng-click="$parent.show.rooms={}; $parent.show.rooms=key" type="button" class="btn btn-default">{{section}}</a>
             </div>
@@ -95,23 +95,47 @@
         </section>
         <section>
             <h3>Reviews</h3>
-            <article class="col-xs-12">
-                <div class="pull-left"><img src="https://cdn3.iconfinder.com/data/icons/wine-and-vineyard-icons/512/French_Man-128.png" width="100%" alt=""/></div>
-                <div>review 1</div>
-                <div>date</div>
-                <div>link</div>
-                <hr/>
-            </article>
-            <article class="col-xs-12">
-                <div class="pull-left"><img src="https://cdn3.iconfinder.com/data/icons/wine-and-vineyard-icons/512/French_Man-128.png" width="100%" alt=""/></div>
-                <div>review 1</div>
-                <div>date</div>
-                <div>link</div>
-                <hr/>
-            </article>
+            <?php
+            // Posts per page setting
+            $ppp = 3; // either use the WordPress global Posts per page setting or set a custom one like $ppp = 10;
+            $custom_offset = 0; // If you are dealing with your custom pagination, then you can calculate the value of this offset using a formula
+            // category (can be a parent category)
+            $category_parent = 7;
+            // lets fetch sub categories of this category and build an array
+            $categories = get_terms( 'category', array( 'child_of' => $category_parent, 'hide_empty' => false ) );
+            $category_list =  array( $category_parent );
+            foreach( $categories as $term ) {
+            $category_list[] = (int) $term->term_id;
+            }
+            // fetch posts in all those categories
+            $posts = get_objects_in_term( $category_list, 'category' );
+            $sql = "SELECT comment_ID, comment_date, comment_content, comment_post_ID
+            FROM {$wpdb->comments} WHERE
+            comment_post_ID in (".implode(',', $posts).") AND comment_approved = 1
+            ORDER by comment_date DESC LIMIT $ppp OFFSET $custom_offset";
+            $comments_list = $wpdb->get_results( $sql );
+            if ( count( $comments_list ) > 0 ) {
+            $date_format = get_option( 'date_format' );
+            echo '<div class="well">';
+            foreach ( $comments_list as $comment ) {
+            echo '<article><i class="col-xs-2 col-sm-3 fa fa-user fa-3x text-center"> </i> <b class="col-xs-10 col-sm-9">'.substr( $comment->comment_content, 0, 50 ).'</b><br />'.date( $date_format, strtotime( $comment->comment_date ) ).' | <a href="'.get_permalink( $comment->comment_post_ID ).'">'.get_the_title( $comment->comment_post_ID ).'</a>
+                <hr/></article>';
+            }
+            echo '</div>';
+            } else {
+            echo '<p>No comments</p>';
+            }
+            ?>
+
         </section>
-        <section>
-            <img width="100%" src="http://localhost/vrqc/wp-content/uploads/2015/01/vrqc-test-offer.jpg">
+        <section class="featured-offer">
+            <?php
+                $cat_id = 5; //the certain category ID
+                $latest_cat_post = new WP_Query( array('posts_per_page' => 1, 'category__in' => array($cat_id)));
+            if( $latest_cat_post->have_posts() ) : while( $latest_cat_post->have_posts() ) : $latest_cat_post->the_post();  ?>
+            <a href="<?php the_permalink() ?>"><?php echo get_the_post_thumbnail() ?></a>
+            <?php endwhile; endif; ?>
+            <?php wp_reset_query(); ?>
         </section>
     </aside>
 </div>

@@ -9,26 +9,20 @@ get_header(); ?>
 
         <?php the_post(); ?>
         <h1 class="panel-heading"><?php the_title(); ?></h1>
-
-        <div class="col-xs-12 col-sm-6">
-            <div class="panel-body">
-                <h2>By Month:</h2>
-                <ul>
-                    <?php wp_get_archives('type=monthly'); ?>
-                </ul>
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-6 panel-body">
-            <h2>By Subject:</h2>
+        
+        <div class="col-xs-12 panel-body">
             <ul>
-                <?php wp_list_categories(); ?>
+                <b><?php wp_list_categories(array('exclude'=> '1,2,5,7', 'title_li'=> '')); ?></b>
             </ul>
         </div>
 
     </div><!-- #content -->
 </div><!-- #container -->
 
+
+<aside class="col-xs-12 col-sm-4">
+    <?php get_sidebar(); ?>
+</aside>
 
 <hr class="col-xs-12"/>
 <?php get_footer(); ?>

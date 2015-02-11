@@ -37,8 +37,7 @@ The following code can be used in any controller ($scope), directive (scope), or
 * Payment
 * Localization
 * footer (menu, trust)
-* reviews on homepage
-* monthly archives
+* colouring
 
 ***
 When exporting this theme to a new database, be sure to update the theme files with appropriate category ids
