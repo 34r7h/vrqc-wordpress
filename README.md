@@ -32,7 +32,7 @@ The following code can be used in any controller ($scope), directive (scope), or
 [JSON API] (https://wordpress.org/plugins/json-api/)
 
 
-##### // TODO
+## // TODO
 * Update README with all the `possibilities`!
 * Garbage collection when resources are removed, etc
 * Style reservation workflow
