@@ -26,7 +26,9 @@ The following code can be used in any controller ($scope), directive (scope), or
 
 ##Plugins Abused
 [Easy Reservations] (https://wordpress.org/plugins/easyreservations/)
+
 [Attachments] (https://wordpress.org/plugins/attachments/)
+
 [JSON API] (https://wordpress.org/plugins/json-api/)
 
 
