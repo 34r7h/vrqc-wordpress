@@ -35,11 +35,11 @@
 
             <article ng-show='(show.rooms == 0 || show.rooms == vrqc.propertiesObject[index.propertyPostsById[id[<?php echo the_ID(); ?>]]].custom_fields.roomcount[0])' ng-init="id[<?php echo the_ID(); ?>] = '<?php echo the_ID(); ?>';" class="clearfix panel-body">
                 <a href="<?php the_permalink();?>">
+                    <h4><i class="fa fa-home"> <?php the_title(); ?></i></h4>
                     <div class="col-xs-12 col-sm-5 frontpage-post">
                         <?php echo get_the_post_thumbnail() ?>
                     </div>
                     <span>
-                        <h4><i class="fa fa-home"> <?php the_title(); ?></i></h4>
                             <div class="table-responsive"><table class="table">
                                 <tr><th>Rooms</th><th>Sleeps</th><th>Bathrooms</th></tr>
                                 <tr>
@@ -61,7 +61,6 @@
                         <p><?php the_content('More'); ?></p>
                     </span>
                 </a>
-                <hr class="col-xs-12"/>
             </article>
 
             <?php endwhile; endif; // done our wordpress loop. Will start again for each category ?>

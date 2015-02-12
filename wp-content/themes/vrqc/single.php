@@ -6,23 +6,24 @@ get_footer();
 } else {
 ?>
 
-<?php
+<div class="clearfix"><?php
 
 get_header();
-?>
-    <div class="clearfix"><article class="col-xs-12 col-sm-6 col-sm-offset-1 " id="content" role="main">
+?></div>
+<hr/>
+<div class="clearfix"><article class="col-xs-12 col-sm-6 col-sm-offset-1 " id="content" role="main">
 
-        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-    
-        <div class="panel panel-default">
-            <h2 class="panel-heading"><i class="fa fa-thumb-tack"> <?php the_title(); ?></i></h2>
-            <div class="panel-body"><?php echo get_the_post_thumbnail() ?></div>
+    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-            <div class="panel-footer">
+    <div class="panel panel-default">
+        <h2 class="panel-heading"><i class="fa fa-thumb-tack"> <?php the_title(); ?></i></h2>
+        <div class="panel-body"><?php echo get_the_post_thumbnail() ?></div>
+
+        <div class="panel-footer">
             <?php the_content('<p>Read the rest of this entry &raquo;</p>'); ?>
             <?php the_tags( '<p>Tags: ', ', ', '</p>'); ?>
-            </div>
         </div>
+    </div>
     <div class="clearfix">
         <div class="col-xs-6 col-sm-6">
             <i class="fa fa-arrow-left"> Previous Entry</i>
@@ -37,7 +38,7 @@ get_header();
             </p>
         </div>
     </div>
-    </article>
+</article>
     <aside class="col-xs-12 col-sm-4 col-sm-offset-1">
         <?php get_sidebar(); ?>
     </aside></div>
@@ -46,5 +47,5 @@ get_header();
 <?php endwhile; else: ?>
 <?php endif; ?>
 <hr/>
-<?php get_footer(); ?>
-<?php } ?>
+<div class="clearfix"><?php get_footer(); ?>
+</div><?php } ?>

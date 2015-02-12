@@ -1,5 +1,5 @@
 <div class="clearfix"><?php get_header(); ?>
-</div><div class="">
+</div>
     <div class='clearfix post-group col-xs-11 col-xs-push-1'>
         <div class="btn-group btn-group-justified">
             <a ng-repeat="category in nav.categories" ng-href="{{siteUrl}}/category/{{category}}" ng-click="$parent.show.category=category" type="button" class="btn btn-default">{{category}}</a>
@@ -25,8 +25,8 @@
         </article>
 
         <?php endwhile; endif; // done our wordpress loop. Will start again for each category ?>
+        <?php } // done the foreach statement ?>
+
     </div>
-    <?php } // done the foreach statement ?>
 </div>
-</div>
-<?php get_footer(); ?>
+<div class="clearfix"><?php get_footer(); ?></div>

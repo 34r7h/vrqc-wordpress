@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-<html lang="en" ng-app="vrqc" ng-init="$root.siteUrl = '<?php echo get_site_url(); ?>'">
+<html <?php language_attributes(); ?> ng-app="vrqc" ng-init="$root.siteUrl = '<?php echo get_site_url(); ?>'">
 <head>
     <title><?php wp_title( '|', true, 'right' ); ?></title>
     <meta charset="utf-8">
@@ -19,13 +19,19 @@
         <a href="tel:15817776339"><button class="btn btn-default "><i class="fa fa-phone"> <span class="hidden-xs">(581) 777-6339</span></i></button></a>
         <a href="mailto:quebeccityreservations@gmail.com"><button class="btn btn-default "><i class="fa fa-envelope"> <span class="hidden-xs">Email</span></i></button></a>
         <a target="new" href="https://www.facebook.com/pages/Vacation-Rentals-Quebec-City/188400344615871"><button class="btn btn-default "><i class="fa fa-facebook-official"> <span class="hidden-xs">Facebook</span></i></button></a>
-        <a href=""><button class="btn btn-default pull-right"><i class="fa fa-language"> Le French?</i></button></a>
+        <a href=""><button style="max-height: 20px"><?php echo do_shortcode('[prisna-google-website-translator]'); ?>
+        </button></a>
+        <a href=""><button class="btn btn-default pull-right" ><i class="fa fa-language"> Le French?</i></button></a>
         <span class="hidden-xs pull-right weather">Current weather: <b>{{vrqc.weather.weather}}</b> Temp: <b>{{vrqc.weather.temperature_string}}</b></span>
         <hr/>
     </div>
     <div class="col-sm-7 col-md-6 col-xs-12 brand">
         <a class="col-xs-9 col-sm-12" href="<?php echo get_site_url(); ?>">
-            <img class="col-xs-4 pull-left" src="<?php echo( get_header_image() ); ?>" alt="<?php echo( get_bloginfo( 'title' ) ); ?>" /><span><h1>Vacation Rentals Quebec City</h1></span>
+            <img class="col-xs-4 pull-left" src="<?php echo( get_header_image() ); ?>" alt="<?php echo( get_bloginfo( 'title' ) ); ?>" />
+            <span>
+                <h1>Vacation Rentals Quebec City</h1>
+            </span>
+            <hr/>
         </a>
         <div class="col-xs-3 col-sm-12">
             <nav class="navbar navbar-default">
