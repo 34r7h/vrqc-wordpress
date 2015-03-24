@@ -31,6 +31,8 @@ The following code can be used in any controller ($scope), directive (scope), or
 
 [JSON API] (https://wordpress.org/plugins/json-api/)
 
+[Translation via Prisna] (https://wordpress.org/plugins/google-website-translator/)
+
 Askimet
 
 
