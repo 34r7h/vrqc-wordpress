@@ -24,7 +24,7 @@
             </button>
         </a>
         <a><span class="pull-right language" ></span></a>
-        <a><span class="hidden-xs weather pull-right ">Current weather: <img style="height: 40px; width: auto" ng-src="{{vrqc.weather.icon_url}}" alt=""/><b>{{vrqc.weather.weather}}</b> Temp: <b>{{vrqc.weather.temperature_string}}</b></span></a>
+        <i><span class="hidden-xs weather pull-right ">Current weather: <img style="height: 40px; width: auto" ng-src="{{vrqc.weather.icon_url}}" alt=""/><b>{{vrqc.weather.weather}}</b> - <b>{{vrqc.weather.temperature_string}}</b></span></i>
         <hr/>
     </div>
     <div class="col-sm-7 col-md-6 col-xs-12 brand">
