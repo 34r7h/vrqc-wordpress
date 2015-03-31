@@ -16,13 +16,15 @@
 <!--==============================header=================================-->
 <header class="clearfix">
     <div class="col-xs-12">
-        <a href="tel:15817776339"><button class="btn btn-default "><i class="fa fa-phone"> <span class="hidden-xs">(581) 777-6339</span></i></button></a>
+        <a href="tel:15817776339"><i class="fa fa-phone fa-2x phone"> <span class="hidden-xs">(581) 777-6339</span></i></a>
         <a href="mailto:quebeccityreservations@gmail.com"><button class="btn btn-default "><i class="fa fa-envelope"> <span class="hidden-xs">Email</span></i></button></a>
-        <a target="new" href="https://www.facebook.com/pages/Vacation-Rentals-Quebec-City/188400344615871"><button class="btn btn-default "><i class="fa fa-facebook-official"> <span class="hidden-xs">Facebook</span></i></button></a>
-        <a href=""><button style="max-height: 20px"><?php echo do_shortcode('[prisna-google-website-translator]'); ?>
-        </button></a>
-        <a href=""><button class="btn btn-default pull-right" ><i class="fa fa-language"> Le French?</i></button></a>
-        <span class="hidden-xs pull-right weather">Current weather: <b>{{vrqc.weather.weather}}</b> Temp: <b>{{vrqc.weather.temperature_string}}</b></span>
+        <a target="new" href="https://www.facebook.com/pages/Vacation-Rentals-Quebec-City/188400344615871">
+            <button class="btn btn-default ">
+                <i class="fa fa-facebook-official"> <span class="hidden-xs">Facebook</span></i>
+            </button>
+        </a>
+        <a><span class="pull-right language" ></span></a>
+        <a><span class="hidden-xs weather pull-right ">Current weather: <img style="height: 40px; width: auto" ng-src="{{vrqc.weather.icon_url}}" alt=""/><b>{{vrqc.weather.weather}}</b> Temp: <b>{{vrqc.weather.temperature_string}}</b></span></a>
         <hr/>
     </div>
     <div class="col-sm-7 col-md-6 col-xs-12 brand">

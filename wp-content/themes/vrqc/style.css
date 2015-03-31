@@ -97,6 +97,10 @@ body {
 }
 
 .header-info h1 {padding:0; margin:0; font-size: 1.618em}
+.phone {
+    position: relative;
+    top: 6px;
+}
 
 footer li {
     list-style: none;
@@ -107,13 +111,19 @@ footer li {
 .property {}
 
 .weather {
-    padding: 5px;
+    padding: 0 5px;
 }
+
+.language {
+    position: relative;
+    top: 6px;
+}
+
 
 .google-maps {
     position: relative;
-    padding-bottom: 75%; // This is the aspect ratio
-height: 0;
+    padding-bottom: 75%;
+    height: 0;
     overflow: hidden;
 }
 .google-maps iframe {

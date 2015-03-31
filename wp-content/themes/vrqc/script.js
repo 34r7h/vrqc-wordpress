@@ -133,10 +133,11 @@ app.controller('vrqcPropCtrl', function($scope, data){
         $timeout(function(){
             $http.get('http://api.wunderground.com/api/d26d4a3f9b087f03/geolookup/conditions/q/Canada/Québec.json')
                 .success(function (data, status, headers, config) {
+		                console.log('weather data', data);
                     vrqc.weather = data.current_observation;
                 }).error(function (data, status, headers, config) {
             });
-        },6000);
+        },3000);
         // Weather API
 
     },0);
