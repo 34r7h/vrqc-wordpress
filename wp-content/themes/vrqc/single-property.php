@@ -16,6 +16,7 @@
             </h1>
             <div class="property-featured">
                 <?php echo get_the_post_thumbnail(); ?>
+                ok
             </div>
             <br/>
             <div ng-init="show.propertySection='Overview'" class="col-xs-12 btn-group btn-group-justified">

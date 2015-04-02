@@ -20,7 +20,7 @@
             <div class="panel panel-default"><a href="<?php the_permalink();?>">
                 <h4 class="panel-heading"><i class="fa fa-thumb-tack"> <?php the_title(); ?></i></h4>
                 <div class="panel-body"><?php echo get_the_post_thumbnail() ?>
-                <?php the_content("Investigate"); ?></div>
+                </div>
             </a></div>
         </article>
 
