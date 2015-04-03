@@ -11,7 +11,7 @@
     <hr/>
 </div>
 
-<div class="">
+<div class="container-fluid">
     <div class="col-xs-12 col-sm-9 col-md-8 col-lg-7">
 
         <section class="panel panel-default">
@@ -70,7 +70,7 @@
         </section>
 
     </div>
-    <aside class="col-xs-12 col-sm-3 col-md-4 col-lg-5">
+    <aside class="col-xs-12 col-sm-3 col-md-4 col-lg-5" style="padding-top: 1em;">
         <section>
 
             <?php
@@ -154,6 +154,6 @@
     </aside>
 </div>
 
-<div class="clearfix col-xs-12">
+<div class="clearfix">
     <?php get_footer(); ?>
 </div>

@@ -1,6 +1,8 @@
 <div class="clearfix"><?php get_header(); ?>
 </div>
     <div class='clearfix post-group col-xs-11 col-xs-push-1'>
+        <h1>Le Blog</h1>
+
         <div class="btn-group btn-group-justified">
             <a ng-repeat="category in nav.categories" ng-href="{{siteUrl}}/category/{{category}}" ng-click="$parent.show.category=category" type="button" class="btn btn-default">{{category}}</a>
         </div>

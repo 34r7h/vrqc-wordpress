@@ -11,7 +11,7 @@ get_footer();
 get_header();
 ?></div>
 <hr/>
-<div class="clearfix"><article class="col-xs-12 col-sm-6 col-sm-offset-1 " id="content" role="main">
+<div class="clearfix container-fluid"><article class="col-xs-12 col-sm-6 col-sm-offset-1 " id="content" role="main">
 
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
@@ -39,7 +39,7 @@ get_header();
         </div>
     </div>
 </article>
-    <aside class="col-xs-12 col-sm-4 col-sm-offset-1">
+    <aside class="col-xs-12 col-sm-4 col-sm-offset-1" style="padding-top: 1em;">
         <?php get_sidebar(); ?>
     </aside></div>
 

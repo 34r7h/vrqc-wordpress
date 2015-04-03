@@ -1,7 +1,6 @@
 <div class="clearfix">
     <?php get_header(); ?>
 </div>
-<hr/>
 <div class="clearfix">
     <article class="col-xs-6 col-sm-7 col-sm-offset-1 property">
         <div class="panel panel-default">
@@ -14,9 +13,16 @@
                     ?>
                 </i>
             </h1>
-            <div class="property-featured">
-                <?php echo get_the_post_thumbnail(); ?>
-                ok
+            <div ng-init="sliderImage=imageList[0].url; sliderAlt = imageList[0].alt; sliderIndex = 0" class="property-featured">
+                <!-- <?php echo get_the_post_thumbnail(); ?> -->
+                <img style="height: 400px" width="auto" ng-src="{{sliderImage || imageList[0].url}}" alt="{{sliderAlt || imageList[0].alt}}"/>
+                <button ng-show="sliderIndex>0" ng-click="sliderIndex=sliderIndex-1; sliderImage=imageList[sliderIndex].url; sliderAlt = imageList[sliderIndex].alt; sliderIndex = sliderIndex"> < </button>
+                <button ng-show="sliderIndex<imageList.length" ng-click="sliderIndex=sliderIndex+1; sliderImage=imageList[sliderIndex].url; sliderAlt = imageList[sliderIndex].alt; sliderIndex = sliderIndex"> > </button>
+                <div class="col-lg-1 col-md-2 col-sm-3 col-xs-4 nopad" ng-repeat="img in imageList track by $index">
+                    <img ng-show="!$parent.gallery[$index]" ng-src="{{img.url}}" alt="{{img.alt}}" class="col-xs-2 smallpad" ng-click="$parent.sliderImage=img.url; $parent.sliderAlt=img.alt; $parent.sliderIndex=$index"/>
+                    <hr ng-if="($index+1) % 4 === 0" class="col-xs-12"/>
+                </div>
+                <hr/>
             </div>
             <br/>
             <div ng-init="show.propertySection='Overview'" class="col-xs-12 btn-group btn-group-justified">
@@ -145,7 +151,7 @@
             </div>
         </div>
     </article>
-    <aside class="col-xs-6 col-sm-4">
+    <aside class="col-xs-6 col-sm-4" style="padding-top: 1em;">
         <?php get_sidebar('property'); ?>
     </aside>
 </div>
