@@ -175,3 +175,8 @@ footer li {
     border-bottom: dotted 1px rgba(51,122,183, .25);
     box-shadow:2px 2px 3px rgba(5,8,13,.15);
 }
+
+.tagline {
+    font-size: 120%;
+    margin-top: 0!important;
+}
