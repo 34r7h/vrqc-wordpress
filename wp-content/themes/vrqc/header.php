@@ -21,10 +21,10 @@
                 <img class="pull-left" style="width: 40px; height: auto;" src="<?php echo( get_header_image() ); ?>" alt="<?php echo( get_bloginfo( 'title' ) ); ?>" />
                 <span class="">Vacation Rentals Quebec City</span>
             </a>
-            <span class="pull-right language navbar-btn"></span>
             <a class="pull-right" href="tel:15817776339">
                 <button style="font-size: 120%" class="fa fa-phone phone btn btn-default navbar-btn"> <span class="hidden-xs">+01-581-777-6339</span></button>
             </a>
+            <span class="pull-right language navbar-btn"></span>
         </div>
     </nav>
     <hr/>

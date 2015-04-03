@@ -1,7 +1,6 @@
 <div class="clearfix">
     <?php get_header(); ?>
 </div>
-<hr/>
 <div class="clearfix"><article class="col-xs-10 col-xs-push-1">
     <div class="well clearfix"><span class="col-xs-12 col-sm-6"><h3>Vacation Rentals</h3></span><span class="col-xs-12 col-sm-6"><div class="btn-group btn-group-justified">
         <a ng-repeat="(key,section) in nav.properties" ng-click="$parent.show.rooms={}; $parent.show.rooms=key" type="button" class="btn btn-default">{{section}}</a>
